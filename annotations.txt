@@ -2,42 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 102. Básico do App Router - page.tsx, layout.tsx e rotas estáticas
-
-Roteamento de páginas estáticas do Next.js
-
-app/page.tsx -> /
-app/about/page.tsx -> /about
-
-Assim, ao acessar uma rota no browser, o componente exportado em 'page.tsx' é renderizado
-na tela. Esse arquivo é chamado de imediato ao acessar a rota.
-
-Na arquivo 'page.tsx', é preciso fazer um 'export default' para o componente ser renderizado.
-
-O componente 'app', por ser acessado pelo '/', representa a homepage da aplicação.
-
-O arquivo 'layout.tsx' presente no diretório 'app' é obrigatório. É nele que vai o 'esqueleto'
-do website.
-
-A 'meta tag' é especial no Next. Ela é representada por um objeto:
-
-export const metadata: Metadata = {
-  title: "The blog with Next 15",
-  description: "A short description",
-};
-
-Como esse arquivo exporta um componente 'RootLayout', todo JSX contido no retorno dele
-é compartilhado entre TODAS as páginas do site.
-
-É importante observar que esse componente — RootLayout — recebe 'children'.
-Assim, o componente contido em 'page.tsx' é passado como 'children' para ele.
-
-O arquivo 'layout.tsx' nos demais componentes não é obrigatório. Caso existir, eles serão
-combinado com o componente 'RootLayout', a fim de formarem um layout único para o website.
-
-Os arquivos de 'layout' são aplicados para os componentes que estão no nível mais baixo do
-aninhamento, ou seja, que estão dentro da rota onde o arquivo foi criado. Os componentes
-acima são afetados apenas pelo 'RootLayout' da rota 'app'.
-
-Lembrando que o 'RootLayout' da rota 'app' PRECISA retorna os elementos JSX 'html' e 'body'
-com 'children'.
+Aula: 103. Configurando o Git e o repositório no GitHub
