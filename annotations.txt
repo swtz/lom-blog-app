@@ -2,18 +2,11 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 113. Container geral do site + tema claro e escuro no Tailwind CSS
+Aula: 114. Componente Container + Dicas do Tailwind CSS
 
-Ao trabalhar com TW, quando se define uma cor no elemento Pai, os elementos Filhos herdam
-essa cor. Por isso é preciso sobrescrever essa cor nos elementos Filhos (se desejar).
+O TW CSS em si é mobile first, ou seja, ao criar os estilos, é recomendável
+começar com tamanhos de tela menores e ir crescendo as medidas ao longo do desenvolvimento.
 
-A aula mostra como utilizar as classes do TW para trocar o 'theme' da aplicação com base
-no 'theme' do sistema operacional.
-
-Entretanto, caso o dev queira fazer isso manualmente, basta definir no arquivo 'globals.css':
-
-@custom-variant dark (&:where(.dark, .dark *));
-
-Assim, quando presente na tag 'html' a classe 'dark', o 'theme' do app muda.
-
-Obs.: é possível escolher somente um dos dois modos (automático ou manual).
+Uma das vantagens de criar 'Containers' de estilo é que o ponto de alteração é reduzido
+a um componente. Caso seja feita uma mudança, ela é refletida para todos os componentes da
+aplicação que usam esse Componente de estilo.
