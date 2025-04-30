@@ -2,4 +2,24 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 103. Configurando o Git e o repositório no GitHub
+Aula: 104. Sobre o Tailwind CSS, clsx e extensões do VS Code para facilitar sua vida
+
+Extensões recomendadas: Tailwind CSS IntelliSense, clsxify-transformer (commit da aula).
+Packages instalados: npm i clsx
+
+O pacote 'clsx' permite fazer condicionais junto com as classes do TW (Tailwind):
+
+<h1
+  className={clsx(
+    {"text-6xl": false}, // não é aplicado o estilo
+    "font-bold",
+    "hover:text-blue-50",
+    "hover:bg-blue-500",
+    "transition",
+    "duration-75"
+  )}
+>
+  Essa aqui é a Homepage
+</h1>
+
+Esse pacote facilita a criação dessas condicionais.
