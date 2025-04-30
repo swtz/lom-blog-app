@@ -2,4 +2,26 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 107. Criando um PostModel para modelar o post
+Aula: 108. Padrão de projeto Repository para Posts - Parte 1
+
+O Design Pattern 'Repository' servirá como abstração de uma base de dados, ou seja,
+ele permite que o código não fique acoplado a um serviço ESPECÍFICO de uma base de dados.
+
+O componente que usar esse métodos dependerá de uma interface e não da implementação
+do método em si.
+
+Instalada a devDependency: npm i -D tsx | executa código TypeScript no terminal
+
+>>> npx tsx [file-path]
+
+Assim, é possível testar alguns comandos que não tem relação direta com o browser.
+
+Para facilitar o uso, é possível instalar a extensão: 'code runner'.
+Após a instalação, é preciso configurar algumas coisas no 'settings.json' do VS Code:
+
+"code-runner.clearPreviousOutput": true,
+"code-runner.runInTerminal": true,
+"code-runner.ignoreSelection": true,
+"code-runner.executorMap": {
+  "typescript": "clear ; npx tsx"
+}
