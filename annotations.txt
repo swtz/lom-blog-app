@@ -2,8 +2,14 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 110. Aviso importante sobre arquivos JSON
+Aula: 111. Criando um componente de SpinLoader (para loading)
 
--> Evitar 'imports' de arquivos JSON por conta do cache do Next
--> Usar função 'readFile' que permite ler arquivos a cada vez que um método
-é chamado.
+Configurações para que a extensão do TW funcione fora do escopo do atributo 'className':
+
+"tailwindCSS.experimental.classRegex": [
+  ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+]
+
+Prestar atenção no código feito para o componente 'SpinLoader', pois foi criada
+uma 'prop' que permite adicionar classes extras de TW CSS. Isso pode ser interessante
+para manipular os estilos do componente durante seu uso em outro componente.

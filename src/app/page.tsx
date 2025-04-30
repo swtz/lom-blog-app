@@ -1,11 +1,9 @@
-import { Header } from "@/components/Header";
+import { SpinLoader } from '@/components/SpinLoader';
 
 export default function HomePage() {
-  console.log("Esse aqui é um Server Component!");
-
   return (
     <div>
-      <Header />
+      <SpinLoader />
     </div>
   );
 }
