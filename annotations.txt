@@ -2,4 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 106. Faça o download do conteúdo e imagens que vamos usar para o site
+Aula: 107. Criando um PostModel para modelar o post
