@@ -1,20 +1,11 @@
-import clsx from "clsx";
+import { Header } from "@/components/Header";
 
 export default function HomePage() {
+  console.log("Esse aqui é um Server Component!");
+
   return (
     <div>
-      <h1
-        className={clsx(
-          { "text-6xl": false },
-          "font-bold",
-          "hover:text-blue-50",
-          "hover:bg-blue-500",
-          "transition",
-          "duration-75"
-        )}
-      >
-        Essa aqui é a Homepage
-      </h1>
+      <Header />
     </div>
   );
 }
