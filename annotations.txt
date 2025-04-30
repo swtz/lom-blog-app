@@ -2,14 +2,26 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 111. Criando um componente de SpinLoader (para loading)
+Aula: 112. Loading.tsx e Suspense para exibir fallback quando algo estiver carregando
 
-Configurações para que a extensão do TW funcione fora do escopo do atributo 'className':
+Para usar a funcionalidade de 'loading' no Next, é possível usar o componente 'Suspense'.
 
-"tailwindCSS.experimental.classRegex": [
-  ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-]
+Estrutura:
 
-Prestar atenção no código feito para o componente 'SpinLoader', pois foi criada
-uma 'prop' que permite adicionar classes extras de TW CSS. Isso pode ser interessante
-para manipular os estilos do componente durante seu uso em outro componente.
+<h1>Olá, mundo!</h1
+<Suspense fallback={<SpinLoader />}>
+  <PostsList />
+</Suspense>
+<footer>Olá, footer!</footer>
+
+O componente 'PostsList' é assíncrono; consequentemente, possui métodos assíncronos.
+O ponto é: para a funcionalidade de 'loading' funcionar corretamente, todo o trecho
+de código assíncrono precisa estar envolvido no componente 'Suspense'.
+
+O restante dos elementos JSX acima — h1 e footer — são renderizados imediatamente.
+Enquanto isso — que é o período chamado 'fallback' — é exibido o componente criado
+anteriormente 'SpinLoader'. Assim, o Next permite gerenciar a exibição do componente
+de 'loading' com base no status de carregamento do que está envolto em 'Suspense'.
+
+Novamente, é preciso ficar atento à maneira como os componentes da aplicação estão
+estruturados.
