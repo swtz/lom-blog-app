@@ -2,26 +2,18 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 112. Loading.tsx e Suspense para exibir fallback quando algo estiver carregando
+Aula: 113. Container geral do site + tema claro e escuro no Tailwind CSS
 
-Para usar a funcionalidade de 'loading' no Next, é possível usar o componente 'Suspense'.
+Ao trabalhar com TW, quando se define uma cor no elemento Pai, os elementos Filhos herdam
+essa cor. Por isso é preciso sobrescrever essa cor nos elementos Filhos (se desejar).
 
-Estrutura:
+A aula mostra como utilizar as classes do TW para trocar o 'theme' da aplicação com base
+no 'theme' do sistema operacional.
 
-<h1>Olá, mundo!</h1
-<Suspense fallback={<SpinLoader />}>
-  <PostsList />
-</Suspense>
-<footer>Olá, footer!</footer>
+Entretanto, caso o dev queira fazer isso manualmente, basta definir no arquivo 'globals.css':
 
-O componente 'PostsList' é assíncrono; consequentemente, possui métodos assíncronos.
-O ponto é: para a funcionalidade de 'loading' funcionar corretamente, todo o trecho
-de código assíncrono precisa estar envolvido no componente 'Suspense'.
+@custom-variant dark (&:where(.dark, .dark *));
 
-O restante dos elementos JSX acima — h1 e footer — são renderizados imediatamente.
-Enquanto isso — que é o período chamado 'fallback' — é exibido o componente criado
-anteriormente 'SpinLoader'. Assim, o Next permite gerenciar a exibição do componente
-de 'loading' com base no status de carregamento do que está envolto em 'Suspense'.
+Assim, quando presente na tag 'html' a classe 'dark', o 'theme' do app muda.
 
-Novamente, é preciso ficar atento à maneira como os componentes da aplicação estão
-estruturados.
+Obs.: é possível escolher somente um dos dois modos (automático ou manual).
