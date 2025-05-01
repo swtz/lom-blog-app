@@ -2,19 +2,15 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 119. Componente PostImageCover com Link + Image do Next
+Aula: 120. Criando a Grid responsiva de PostList com Tailwind CSS e nossos componentes
 
-Dica para definir as 'props' de um componente de modo que sejam iguais
-a algum componente React ou Next já existente:
+Dica CSS:
 
-type PostCoverImageProps = {
-  imageProps: React.ComponentProps<typeof Image>;
-  linkProps: React.ComponentProps<typeof Link>;
-};
+Quando se aplica um display 'flex' no elemento Pai, os elementos Filhos se comportam
+como display 'block'. Isso é importante, pois algumas propriedades só se aplicam
+a elementos que possuem display 'block' (tal como as bordas arrendondadas de um elemento
+quadrado).
 
-Assim, os componentes 'Image' e 'Link' podem receber todas os propriedades
-nativas mais personalizadas que o dev quiser criar.
-
-Em contrapartida, o coach-Luiz ressaltou que essa prática pode tornar mais árduo
-o desenvolvimento de testes pela quantidade a propriedades que um Componente React/Next
-nativo possui.
+Por exemplo, se uma imagem está dentro de um elemento 'a', não será aplicado esse efeito
+das bordas, pois, por padrão, elementos 'a' são 'inline'. Assim, quando se aplica o
+display 'flex' no elemento Pai desses links, o efeito das bordas é aplicado.

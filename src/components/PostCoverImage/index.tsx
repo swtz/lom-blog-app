@@ -15,7 +15,6 @@ export function PostCoverImage({ imageProps, linkProps }: PostCoverImageProps) {
         'w-full',
         'h-full',
         'overflow-hidden',
-        'object-right',
         'rounded-2xl',
         linkProps.className,
       )}
