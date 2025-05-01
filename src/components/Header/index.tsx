@@ -1,23 +1,18 @@
-"use client";
-
-import clsx from "clsx";
+import clsx from 'clsx';
 
 export function Header() {
-  console.log("Esse aqui é um Client Component!");
-
   return (
-    <h1
-      className={clsx(
-        { "text-6xl": false },
-        "font-bold",
-        "hover:text-blue-50",
-        "hover:bg-blue-500",
-        "transition",
-        "duration-75"
-      )}
-      onClick={() => alert("Esse aqui é um Client Component!")}
-    >
-      Essa aqui é a Homepage
-    </h1>
+    <header>
+      <h1
+        className={clsx(
+          'text-4xl/normal font-extrabold py-8',
+          'sm:text-5xl/normal md:py-10',
+          'md:text-6xl/normal md:py-11',
+          'lg:text-7xl/normal lg:py-12',
+        )}
+      >
+        <a href='#'>The Blog</a>
+      </h1>
+    </header>
   );
 }

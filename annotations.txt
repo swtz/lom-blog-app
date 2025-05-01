@@ -2,11 +2,6 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 114. Componente Container + Dicas do Tailwind CSS
+Aula: 115. Header Component + Breakpoints do Tailwind CSS com mobile-first
 
-O TW CSS em si é mobile first, ou seja, ao criar os estilos, é recomendável
-começar com tamanhos de tela menores e ir crescendo as medidas ao longo do desenvolvimento.
-
-Uma das vantagens de criar 'Containers' de estilo é que o ponto de alteração é reduzido
-a um componente. Caso seja feita uma mudança, ela é refletida para todos os componentes da
-aplicação que usam esse Componente de estilo.
+O TW CSS já reseta o css automaticamente.
