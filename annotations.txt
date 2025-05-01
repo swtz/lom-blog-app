@@ -2,33 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 116. Componente FeaturedPost + Tailwind CSS Grid
-
-Dica TW CSS para quando se quer aumentar uma imagem ao passar o mouse sem que ela
-cresça mudando de lugar:
-
-<section
-  className={clsx('grid grid-cols-1 gap-8 mb-16', 'sm:grid-cols-2 group')}
->
-<Link className='w-full h-full overflow-hidden rounded-2xl' href='#'>
-  <Image
-    className='group-hover:scale-105 transition'
-    src='/images/bryen_0.png'
-    width={1200}
-    height={720}
-    alt='Título do post'
-  />
-</Link>
-<p>Several chars here</p>
-</section>
-
-A combinação das classes 'w-full h-full overflow-hidden' permitem que a imagem
-cresça dentro dos limites do componente 'Link'.
-
-Na tag 'section' há a classe 'group'. Ela é setada no elemento Pai, a fim de que
-os elementos Filhos que usarem ela, permitirão que alguma propriedade seja aplicada
-no elemento Pai.
-
-Nesse exemplo, ao passar o mouse em algum lugar da área da 'section', são aplicados
-os efeitos contidos na classe do elemento Filho 'Image', pois ele utiliza como prefixo
-a classe 'group'.
+Aula: 117. Concluindo o CSS do FeaturedPost com Tailwind CSS
