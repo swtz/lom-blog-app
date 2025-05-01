@@ -2,4 +2,18 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 117. Concluindo o CSS do FeaturedPost com Tailwind CSS
+Aula: 118. Criando um componente Heading dinâmico e reutilizável
+
+Dica de componentização:
+
+Caso se deseje estilizar um componente ao mesmo tempo, é possível criar um componente
+'Wrapper' que contém esses estilos. Assim como um componente 'Container' aplica estilos
+de espaçamento em seus 'children', o 'Wrapper' pode aplicar alguns estilos mais específicos
+como cores e até mesmo efeitos.
+
+Nessa aula é ensinada uma maneira de renderizar um elemento JSX dinamicamente por meio
+de 'props'. Basicamente, isso é possível renomeando a 'prop' para um nome com a letra inicial
+maiúscula. Assim, o React o reconhece como um componente.
+
+É possível também aplicar estilos diferentes baseados no valor dessa 'props' com o uso de
+dicionários.
