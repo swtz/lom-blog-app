@@ -2,4 +2,44 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 128. not-found.tsx para erro 404 - Página não encontrada
+Aula: 129. Criando rotas dinâmicas no Next.js
+
+Por padrão, o Next carrega as rotas estáticas primeiro. Caso não encontre nenhuma,
+ele procura se há alguma rota dinâmica.
+
+A rota dinâmica é definida por meio da criação de um pacote com o nome do parâmetro
+que servirá como nome da rota de modo dinâmico. Esse pacote deve possui o nome entre
+'brackets' -> post/[slug]/page.tsx
+
+Fluxo:
+
+1 — usuário informa no browser: theblog.com/post/aprenda-a-programar-em-30-dias
+2 — o Next pega o valor após 'post/'
+3 — o componente page.tsx recebe esse valor por 'props' dentro do objeto 'params'
+4 — para obter esse valor, o componente pode seguir a sintaxe de async/await
+5 — esse valor pode ser usado em um método que, por exemplo, consulta uma base de dados
+6 — o desenvolvedor pode fazer uma lógica para, caso esse slug não for válido, exibir
+uma página not-found.tsx
+
+Estrutura do componente dinâmico:
+
+type PostSlugPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function PostSlugPage({ params }: PostSlugPageProps) {
+  const { slug } = await params;
+
+  return <h1>Hello, dynamic route: {slug}</h1>;
+}
+
+O valor contido em 'params.slug' é o valor que vem da 'url' do browser.
+
+Obs.:
+É importante ler a documentação do Next no que diz respeito ao aninhamentos de rotas,
+pois é possível ter rotas estáticas dentro de rotas dinâmicas, ou seja, não necessariamente
+as rotas dinâmicas precisam estar no final da 'url' por assim dizer:
+
+-> page.tsx/user/[id]/page.tsx/dashboard/page.tsx
+
+Assim, a rota 'dashboard' seria comum a todos os usuários cadastrados no sistema.
