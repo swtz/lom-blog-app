@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { postRepository } from '@/repositories/post';
 import { PostCoverImage } from '../PostCoverImage';
 import { PostSummary } from '../PostSummary';
+import { findAllPublicPosts } from '@/lib/post/queries';
 
 export async function PostsList() {
-  const posts = await postRepository.findAll();
+  const posts = await findAllPublicPosts();
 
   return (
     <div
@@ -14,7 +14,7 @@ export async function PostsList() {
         'md:grid-cols-3',
       )}
     >
-      {posts.map(post => {
+      {posts.slice(1).map(post => {
         const postLink = `/post/${post.slug}`;
 
         return (

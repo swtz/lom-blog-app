@@ -1,12 +1,11 @@
 import clsx from 'clsx';
-import { postRepository } from '@/repositories/post';
 import { PostCoverImage } from '../PostCoverImage';
 import { PostSummary } from '../PostSummary';
+import { findAllPublicPosts } from '@/lib/post/queries';
 
 export async function PostFeatured() {
-  const post = await postRepository.findById(
-    'be3f14a1-0105-4e2e-bfc9-133a05e7bda6',
-  );
+  const posts = await findAllPublicPosts();
+  const post = posts[0];
   const postLink = `/post/${post.slug}`;
 
   return (

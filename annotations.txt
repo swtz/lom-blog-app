@@ -2,29 +2,18 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 124. Dicas de segurança sobre props no Next.js
+Aula: 125. React cache remove duplicação de chamadas da API ou Repositório
 
-A dica é relacionada ao envio de 'prop's de um Componente Pai 'server-side' para
-um Componente Filho 'client-side'.
+A função (normalmente assíncrona) fica armazenada no cache durante todo o ciclo de vida
+dos componentes. Ela funciona como se fosse um estado global para a aplicação, pois
+o React reconhece ela em toda a parte de código.
 
-Essa 'props', muitas vezes, pode conter um objeto que vem da base de dados.
-Por isso, é preciso prestar muita atenção no conteúdo que esse objeto carrega, pois
-caso ele conter DADOS SENSÍVEIS, esses dados VÃO FICAR EXPOSTOS na build final do projeto,
-ou seja, no código-fonte da aplicação, no navegador do cliente.
+Esse comportamento tira a necessidade da chamada a uma API no componente 'app', por exemplo,
+pois sem esse cache, o desenvolvedor React obteria os dados em um componente de nível mais
+alta (talvez até um Contexto) e passaria os dados por meio desse Contexto ou por meio de 'props'.
 
-Por quê?
+Com o cache, é possível chamar a API em qualquer lugar do código, pois o React vai usar a função
+do cache que ele fez retirando qualquer excesso de chamadas possível.
 
-Ora, como essa 'props' foi passada DIRETAMENTE para um Componente Filho 'client-side',
-o Next vai incluir esse componente na build final do projeto e, consequentemente, o objeto
-com dados sensíveis contido nas 'props' vai vazar para o lado do cliente.
-
-Por isso, passar 'props' que possuem um objeto oriundo da base de dados DIRETAMENTE para
-um componente 'client-side' (ou que pode vir a se tornar esse tipo) é uma MÁ PRÁTICA do
-desenvolvedor Next.
-
-Solução 1 — realizar a consulta no banco de dados no Componente Filho, assim garantindo que ele
-seja 'server-side' e componentizando a parte do código que interage com a API do browser.
-
-Solução 2 — passar de modo ESPECÍFICO as propriedades desse objeto como 'props', ou seja, não
-passar o objeto inteiro. Assim, caso esse componente se torne 'client-side', as informações
-sensíveis não serão transmitidas para ele.
+Essa prática também endossa a dica de segurança estudada na aula 124 (evita que dados da API sejam
+tentadoramente passados via 'props').
