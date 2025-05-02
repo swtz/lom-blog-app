@@ -2,10 +2,21 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 121. Movendo PostFeatured para um componente separado
+Aula: 122. Formatando datas com date-fns usando format e formatDistanceToNow
 
-Nesse projeto, haverá duas queries diferentes para obtenção de dados
-do banco de dados.
+npm i date-fns
 
-Query '1' será para preencher o componente 'PostFeatured';
-Query '2' será para preencher o componente 'PostsList';
+'Ctrl + Shift + C' -> abre o terminal do sistema na pasta do projeto
+
+Sobre os diretórios que são criados ao longo do projeto:
+
+'utils' -> ferramentas que não tem ligação com o projeto em si
+'helpers' -> ferramentas que não tem ligação com o projeto em si
+
+'lib' -> -> ferramentas que tem ligação com o projeto em si
+
+Ou seja, 'utils' e 'helpers' podem ser movidos para outro projeto tranquilamente, pois
+suas funções não dependem de nenhuma parte do projeto em si.
+
+Nomenclatura para arquivos de funções puras ou arquivos de tipos: kebab-case ou dash-case.
+As palavras são separadas por hifens.
