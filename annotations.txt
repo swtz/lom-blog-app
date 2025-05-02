@@ -2,21 +2,18 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 122. Formatando datas com date-fns usando format e formatDistanceToNow
+Aula: 123. Exibindo a data formatada em nossos componentes
 
-npm i date-fns
+<time
+  className='text-slate-600 block text-sm/tight'
+  dateTime={post.createdAt}
+  title={formatRelativeDate(post.createdAt)}
+>
+  {formatDatetime(post.createdAt)}
+</time>
 
-'Ctrl + Shift + C' -> abre o terminal do sistema na pasta do projeto
+O atributo 'dateTime' é reconhecido pelo browser para indicar que a tag 'time' possui
+uma data de fato (tanto é que seu valor não é formatado).
 
-Sobre os diretórios que são criados ao longo do projeto:
-
-'utils' -> ferramentas que não tem ligação com o projeto em si
-'helpers' -> ferramentas que não tem ligação com o projeto em si
-
-'lib' -> -> ferramentas que tem ligação com o projeto em si
-
-Ou seja, 'utils' e 'helpers' podem ser movidos para outro projeto tranquilamente, pois
-suas funções não dependem de nenhuma parte do projeto em si.
-
-Nomenclatura para arquivos de funções puras ou arquivos de tipos: kebab-case ou dash-case.
-As palavras são separadas por hifens.
+Para renomear o nome de uma variável, é possível selecioná-la e apertar a tecla 'F12',
+assim, ao renomear, o VS Code faz as alterações em todos os arquivos que usam essa variável.
