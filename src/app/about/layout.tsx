@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sobre nosso time',
+  description: 'Another short description',
+};
+
 export default function RootLayout({
   children,
 }: {

@@ -2,18 +2,8 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 125. React cache remove duplicação de chamadas da API ou Repositório
+Aula: 126. Sobre layout.tsx (root) e Metadata do Next para title e description
 
-A função (normalmente assíncrona) fica armazenada no cache durante todo o ciclo de vida
-dos componentes. Ela funciona como se fosse um estado global para a aplicação, pois
-o React reconhece ela em toda a parte de código.
-
-Esse comportamento tira a necessidade da chamada a uma API no componente 'app', por exemplo,
-pois sem esse cache, o desenvolvedor React obteria os dados em um componente de nível mais
-alta (talvez até um Contexto) e passaria os dados por meio desse Contexto ou por meio de 'props'.
-
-Com o cache, é possível chamar a API em qualquer lugar do código, pois o React vai usar a função
-do cache que ele fez retirando qualquer excesso de chamadas possível.
-
-Essa prática também endossa a dica de segurança estudada na aula 124 (evita que dados da API sejam
-tentadoramente passados via 'props').
+Essa aula abordou a configuração de títulos do documento para página estáticas.
+Há uma maneira de fazer isso dinamicamente — com rotas dinâmicas — usando 'generateMetadata'
+do Next.
