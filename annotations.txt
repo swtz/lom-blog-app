@@ -2,18 +2,29 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 123. Exibindo a data formatada em nossos componentes
+Aula: 124. Dicas de segurança sobre props no Next.js
 
-<time
-  className='text-slate-600 block text-sm/tight'
-  dateTime={post.createdAt}
-  title={formatRelativeDate(post.createdAt)}
->
-  {formatDatetime(post.createdAt)}
-</time>
+A dica é relacionada ao envio de 'prop's de um Componente Pai 'server-side' para
+um Componente Filho 'client-side'.
 
-O atributo 'dateTime' é reconhecido pelo browser para indicar que a tag 'time' possui
-uma data de fato (tanto é que seu valor não é formatado).
+Essa 'props', muitas vezes, pode conter um objeto que vem da base de dados.
+Por isso, é preciso prestar muita atenção no conteúdo que esse objeto carrega, pois
+caso ele conter DADOS SENSÍVEIS, esses dados VÃO FICAR EXPOSTOS na build final do projeto,
+ou seja, no código-fonte da aplicação, no navegador do cliente.
 
-Para renomear o nome de uma variável, é possível selecioná-la e apertar a tecla 'F12',
-assim, ao renomear, o VS Code faz as alterações em todos os arquivos que usam essa variável.
+Por quê?
+
+Ora, como essa 'props' foi passada DIRETAMENTE para um Componente Filho 'client-side',
+o Next vai incluir esse componente na build final do projeto e, consequentemente, o objeto
+com dados sensíveis contido nas 'props' vai vazar para o lado do cliente.
+
+Por isso, passar 'props' que possuem um objeto oriundo da base de dados DIRETAMENTE para
+um componente 'client-side' (ou que pode vir a se tornar esse tipo) é uma MÁ PRÁTICA do
+desenvolvedor Next.
+
+Solução 1 — realizar a consulta no banco de dados no Componente Filho, assim garantindo que ele
+seja 'server-side' e componentizando a parte do código que interage com a API do browser.
+
+Solução 2 — passar de modo ESPECÍFICO as propriedades desse objeto como 'props', ou seja, não
+passar o objeto inteiro. Assim, caso esse componente se torne 'client-side', as informações
+sensíveis não serão transmitidas para ele.

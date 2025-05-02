@@ -1,10 +1,13 @@
 import clsx from 'clsx';
-import { PostHeading } from '../PostHeading';
+import { postRepository } from '@/repositories/post';
 import { PostCoverImage } from '../PostCoverImage';
+import { PostSummary } from '../PostSummary';
 
-export function PostFeatured() {
-  const slug = 'any-slug';
-  const postLink = `/post/${slug}`;
+export async function PostFeatured() {
+  const post = await postRepository.findById(
+    'be3f14a1-0105-4e2e-bfc9-133a05e7bda6',
+  );
+  const postLink = `/post/${post.slug}`;
 
   return (
     <section
@@ -13,31 +16,20 @@ export function PostFeatured() {
       <PostCoverImage
         linkProps={{ href: postLink }}
         imageProps={{
-          src: '/images/bryen_5.png',
-          alt: 'A imagem que mostra a capa do post',
+          src: post.coverImageUrl,
+          alt: post.title,
           width: 1200,
           height: 720,
           priority: true,
         }}
       />
-      <div
-        className={clsx('flex flex-col gap-3', 'sm:justify-center sm:gap-2.5')}
-      >
-        <time
-          className='text-slate-600 block text-sm/tight'
-          dateTime='2025-04-30'
-        >
-          30/04/2025 21:59
-        </time>
-
-        <PostHeading url={postLink}>Lorem ipsum dolor sit amet.</PostHeading>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-          deleniti officiis, dicta suscipit mollitia harum voluptatibus illo.
-          Odio suscipit illum cumque placeat nihil dolorem sequi, omnis
-          laboriosam esse nulla. Neque.
-        </p>
-      </div>
+      <PostSummary
+        postHeading='h1'
+        postLink={postLink}
+        createdAt={post.createdAt}
+        excerpt={post.excerpt}
+        title={post.title}
+      />
     </section>
   );
 }
