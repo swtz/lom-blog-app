@@ -2,10 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 130. Lançando notFound do Next.js e criando findBySlug no repositório
-
-O método 'notFound' do Next pode ser usado para exibir o componente NotFoundPage.
-Como esse método lança uma exceção no console, ele não pode ser usado dentro
-do escopo do 'catch'.
-Como esse método possui 'never' como tipo de retorno, isso quer dizer que ele
-lança uma exceção no console.
+Aula: 131. Melhorando a função findPostBySlugCached para reuso
