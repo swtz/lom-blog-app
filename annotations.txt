@@ -2,8 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 126. Sobre layout.tsx (root) e Metadata do Next para title e description
-
-Essa aula abordou a configuração de títulos do documento para página estáticas.
-Há uma maneira de fazer isso dinamicamente — com rotas dinâmicas — usando 'generateMetadata'
-do Next.
+Aula: 127. Separando o componente Footer (rodapé)
