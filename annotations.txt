@@ -2,4 +2,48 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 134. Estilizando o conteúdo do SinglePost com Tailwind CSS
+Aula: 135. Renderizando Markdown como HTML com react-markdown
+
+O conteúdo do post será feito em 'markdown' que é um tipo de linguagem de marcação.
+
+Por que não usar HTML direto?
+Por questões de segurança. Ora, um usuário mais avançado pode facilmente injetar
+um script JavaScript por meio de uma tag HTML. Esse código pode afetar, tanto o lado
+do servidor quanto o do cliente.
+Assim, após o usuário fazer suas marcações no 'markdown', essas informações passarão
+por um processo de limpeza antes de serem renderizadas como HTML (no final das contas
+isso se tornará HTML).
+O ponto é: a marcação em HTML não será feita de modo direto.
+
+npm i react-markdown
+
+Acima, foi instalado um componente React que interpreta uma 'string' escrita em 'markdown'.
+Uso:
+
+<div>
+  <ReactMarkdown>{markdown}</ReactMarkdown>
+</div>
+
+É recomendável que esse elemento envolva apenas o conteúdo do 'markdown' propriamente dito.
+
+Dependências relacionadas à segurança e renderização desse conteúdo em 'markdown':
+
+npm i rehype-sanitize | npm i remark-gfm
+
+Uso desses 'plugins':
+
+<ReactMarkdown
+  rehypePlugins={[rehypeSanitize]}
+  remarkPlugins={[remarkGfm]}
+>
+  {markdown}
+</ReactMarkdown>
+
+São colocados dentro de um array nas 'props' acima, pois, caso o dev queira, existem mais 'plugins'
+que podem ser usados nesse componente React.
+
+Até esse momento, o código escrito em 'markdown' já está sendo renderizado para HTML, por isso
+são exibidas as formatações corretamente no browser.
+
+Para estilizar esse conteúdo com TW, é preciso a instalação de um 'plugin' do TW também.
+É útil para facilitar a estilização do conteúdo renderizado no componente 'ReactMarkdown'.
