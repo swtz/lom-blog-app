@@ -2,4 +2,7 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 144. Remova arquivos e configurações inúteis para continuar
+Aula: 145. Instalando o Drizzle ORM para base de dados
+
+npm i drizzle-orm
+sudo apt install sqlite3
