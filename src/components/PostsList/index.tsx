@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { PostCoverImage } from '../PostCoverImage';
 import { PostSummary } from '../PostSummary';
 import { findAllPublicPostsCached } from '@/lib/post/queries';
-import { createImageSrc } from '@/utils/create-image-src';
 
 export async function PostsList() {
   const posts = await findAllPublicPostsCached();
@@ -25,7 +24,7 @@ export async function PostsList() {
               <PostCoverImage
                 linkProps={{ href: postLink }}
                 imageProps={{
-                  src: createImageSrc(post.coverImageUrl),
+                  src: post.coverImageUrl,
                   alt: post.title,
                   width: 1200,
                   height: 720,

@@ -2,7 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 143. Opcional: Publicando a pasta out no GitHub Pages
-
-10:50 de vídeo: omg...
-;-;
+Aula: 144. Remova arquivos e configurações inúteis para continuar
