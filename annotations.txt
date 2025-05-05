@@ -2,48 +2,33 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 135. Renderizando Markdown como HTML com react-markdown
+Aula: 136. Configurando o plugin Tailwind Typography do Tailwind CSS
 
-O conteúdo do post será feito em 'markdown' que é um tipo de linguagem de marcação.
+Ler a documentação do TW sobre '@layer'.
 
-Por que não usar HTML direto?
-Por questões de segurança. Ora, um usuário mais avançado pode facilmente injetar
-um script JavaScript por meio de uma tag HTML. Esse código pode afetar, tanto o lado
-do servidor quanto o do cliente.
-Assim, após o usuário fazer suas marcações no 'markdown', essas informações passarão
-por um processo de limpeza antes de serem renderizadas como HTML (no final das contas
-isso se tornará HTML).
-O ponto é: a marcação em HTML não será feita de modo direto.
+npm i -D @tailwindcss/typography
 
-npm i react-markdown
+Esse 'plugin' facilitará o estilização do 'markdown' que fora renderizado.
+É uma devDependency, pois, na build final do projeto, ela não será mais necessária,
+por conta do processo de transpilação que é feito no código CSS.
 
-Acima, foi instalado um componente React que interpreta uma 'string' escrita em 'markdown'.
-Uso:
+Para usar ess 'plugin', é preciso informá-lo no arquivo 'globals.css':
 
-<div>
-  <ReactMarkdown>{markdown}</ReactMarkdown>
-</div>
+@plugin "@tailwindcss/typography";
 
-É recomendável que esse elemento envolva apenas o conteúdo do 'markdown' propriamente dito.
+É interessante ler mais sobre ele na página do GitHub, pois, a partir de algumas
+classes específicas, é que esses estilos serão aplicados nos elementos HTML que
+foram renderizados.
 
-Dependências relacionadas à segurança e renderização desse conteúdo em 'markdown':
+Essas classes podem ser informadas nas 'tags' que envolvem o componente React
+'ReactMarkdown'.
 
-npm i rehype-sanitize | npm i remark-gfm
+Dica CSS:
 
-Uso desses 'plugins':
+Caso um elemento (table, pre, etc) estoure o container empurrando o documento
+inteiro para o lado, é possível envolver esse elemento em uma 'div' e aplicar
+a propriamente CSS 'overflow-hidden' no documento. Assim, o dev pode
+aplicar a propriedade 'overflow-x: auto', por exemplo, nessa 'div', evitando
+que todo o documento seja empurrado para o lado.
 
-<ReactMarkdown
-  rehypePlugins={[rehypeSanitize]}
-  remarkPlugins={[remarkGfm]}
->
-  {markdown}
-</ReactMarkdown>
-
-São colocados dentro de um array nas 'props' acima, pois, caso o dev queira, existem mais 'plugins'
-que podem ser usados nesse componente React.
-
-Até esse momento, o código escrito em 'markdown' já está sendo renderizado para HTML, por isso
-são exibidas as formatações corretamente no browser.
-
-Para estilizar esse conteúdo com TW, é preciso a instalação de um 'plugin' do TW também.
-É útil para facilitar a estilização do conteúdo renderizado no componente 'ReactMarkdown'.
+Para substituir o conteúdo desse elemento, é usado o componente React 'ReactMarkdown'.
