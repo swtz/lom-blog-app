@@ -2,46 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 141. Static Site Generation (SSG) no Next.js no App Router (export em HTML, CSS e JS)
-
-Ler mais sobre as funcionalidades não suportadas pelo uso do SSG:
-https://nextjs.org/docs/app/guides/static-exports#unsupported-features
-
-[no arquivo 'next.config.ts']:
-
-const nextConfig: NextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: false,
-  },
-};
-
-Assim, são desligadas algumas 'features' que o servidor do Next proporciona. Um site estático
-não depende de nenhum servidor, por isso é precisa desligar qualquer 'feature' que precise
-do servidor do Next ao usufruir da build que a tecnologia SSG realiza.
-
-Outra configuração importante é o uso da função 'generateStaticParams' a qual permite que o Next,
-no momento da build, gere as páginas dinâmicas de modo estático por percorrer a fonte dos dados
-usando o campo definido pelo dev como parâmetro da rota, ou seja, ao invés do servidor do Next
-buscar essas rotas quando o site está em execução, ele já faz isso no momento da build. O código
-abaixo mostra um exemplo de como isso pode ser feito:
-
-export async function generateStaticParams() {
-  const posts = await findAllPublicPostsCached();
-
-  return posts.map(post => {
-    return {
-      slug: post.slug,
-    };
-  });
-}
-
-Nota-se que, no final das contas, o método 'generateStaticParams' retorna um array
-de objeto contento a chave 'slug' qual tem como valor cada 'slug' do post que foi
-obtido pela consulta na base de dados (no momento da build).
-O código do componente que representa a rota dinâmica fica intacto.
-
-Se tudo estiver corretamente configurado, após o comando 'npm run build', o Next
-gerará uma pasta chamada 'out'. Ela possui os arquivos estáticos de todo o website.
-É interessante que essa pasta pode ser "servida" por qualquer servidor que aceite
-HTML puro. Essa pasta se torna independente do Next (consequentemente do seu servidor também).
+Aula: 142. Servindo a pasta out com servidores web (LiveServer e Serve)
