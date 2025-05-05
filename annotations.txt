@@ -2,26 +2,23 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 139. Criando Error Boundaries com arquivos error.tsx
+Aula: 140. Cuidado para não mudar um Server Component em Client Component sem querer
 
-É possível criar um arquivo 'error.tsx' em cada rota da aplicação. O componente presente
-nele é renderizado toda vez que uma exceção NÃO CAPTURADA é lançada no console, ou seja,
-toda exceção não tratada que é lançada ao acessar essa rota culmina no arquivo 'error.tsx'.
+Importante: ao usar a diretiva 'use client' em um componente, TODOS OS SEUS FILHOS se tornarão
+componentes 'client-side'. Por isso é uma boa prática "empurrar" um componente 'client-side' para
+um nível mais baixo no aninhamento de rotas/componentes.
 
-Por que é chamado de 'ErrorBoundary'?
+Por conta da maneira que o Server Component é importado, ele se torna um Client Component
+de maneira automática. Por isso é muito perigoso usar um componente 'server-side' dentro de um
+componente 'client-side'.
 
-Porque esse arquivo lida com os erros, tanto da rota em si como de seus aninhamentos.
-Ou seja, erros que acontecem nas rotas de nível superior, precisam de um arquivo 'error.tsx'
-também.
-'ErrorBoundary' -> Limite de alcance que o arquivo possui ao lidar com algum erro.
+Ou seja, todo componente importado para um component 'client-side', torna-se 'client-side'. Isso é
+perigoso, pois um componente 'server-side' pode conter informações sensíveis da aplicação.
 
-Caso esse arquivo seja criado no diretório 'app', vai funcionar como um 'RootErrorPage', ou
-seja, esse arquivo será chamado toda vez que uma exceção não for tratada na aplicação (e caso
-as outras rotas não possuírem um arquivo desse também).
+Como posso resolver esse problema?
+Por passar o componente 'server-side' como 'children' do componente 'client-side'.
+Assim, cada um se comporta como fora definido:
 
-Lembrando que esse arquivo necessita da diretiva 'use client';
-
-Há um arquivo 'error.tsx' que foi criado para exemplificar o uso desse componente com as 'props'
-que ele recebe, a saber: 'error' com o conteúdo da mensagem do erro e 'reset' que é uma função
-que recarrega a rota ou o componente o qual lançou a exceção. Pode ser útil em casos que o erro
-foi provocado pela queda de internet.
+<ClientComponent>
+  <ServerComponent />
+</ClientComponent>
