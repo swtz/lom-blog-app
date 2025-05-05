@@ -2,33 +2,30 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 136. Configurando o plugin Tailwind Typography do Tailwind CSS
+Aula: 137. Substituindo e modificando elementos HTML no React Markdown
 
-Ler a documentação do TW sobre '@layer'.
+Uso da 'prop' 'componentes' do componente 'ReactMarkdown':
 
-npm i -D @tailwindcss/typography
+<ReactMarkdown
+  rehypePlugins={[rehypeSanitize]}
+  remarkPlugins={[remarkGfm]}
+  components={{
+    table: ({ node, ...props }) => {
+      if (!node?.children) return '';
 
-Esse 'plugin' facilitará o estilização do 'markdown' que fora renderizado.
-É uma devDependency, pois, na build final do projeto, ela não será mais necessária,
-por conta do processo de transpilação que é feito no código CSS.
+      return (
+        <div className='overflow-x-auto'>
+          <table className='w-full min-w-[600px]' {...props} />
+        </div>
+      );
+    },
+  }}
+>
+  {markdown}
+</ReactMarkdown>
 
-Para usar ess 'plugin', é preciso informá-lo no arquivo 'globals.css':
+O elemento JSX 'table' é retornado envolto de uma 'div' que contém propriedades CSS. Também
+a 'table' original é alterada para a 'table' que contém outras propriedades CSS. Por isso é
+importante que as 'props' sem "pegas" e "espalhadas" no retorno do novo elemento JSX.
 
-@plugin "@tailwindcss/typography";
-
-É interessante ler mais sobre ele na página do GitHub, pois, a partir de algumas
-classes específicas, é que esses estilos serão aplicados nos elementos HTML que
-foram renderizados.
-
-Essas classes podem ser informadas nas 'tags' que envolvem o componente React
-'ReactMarkdown'.
-
-Dica CSS:
-
-Caso um elemento (table, pre, etc) estoure o container empurrando o documento
-inteiro para o lado, é possível envolver esse elemento em uma 'div' e aplicar
-a propriamente CSS 'overflow-hidden' no documento. Assim, o dev pode
-aplicar a propriedade 'overflow-x: auto', por exemplo, nessa 'div', evitando
-que todo o documento seja empurrado para o lado.
-
-Para substituir o conteúdo desse elemento, é usado o componente React 'ReactMarkdown'.
+Para mais informações a repeito do objeto 'node', é possível imprimi-lo no console.
