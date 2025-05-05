@@ -2,30 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 137. Substituindo e modificando elementos HTML no React Markdown
-
-Uso da 'prop' 'componentes' do componente 'ReactMarkdown':
-
-<ReactMarkdown
-  rehypePlugins={[rehypeSanitize]}
-  remarkPlugins={[remarkGfm]}
-  components={{
-    table: ({ node, ...props }) => {
-      if (!node?.children) return '';
-
-      return (
-        <div className='overflow-x-auto'>
-          <table className='w-full min-w-[600px]' {...props} />
-        </div>
-      );
-    },
-  }}
->
-  {markdown}
-</ReactMarkdown>
-
-O elemento JSX 'table' é retornado envolto de uma 'div' que contém propriedades CSS. Também
-a 'table' original é alterada para a 'table' que contém outras propriedades CSS. Por isso é
-importante que as 'props' sem "pegas" e "espalhadas" no retorno do novo elemento JSX.
-
-Para mais informações a repeito do objeto 'node', é possível imprimi-lo no console.
+Aula: 138. Componente para as mensagens de erro para o cliente (ErrorMessage)
