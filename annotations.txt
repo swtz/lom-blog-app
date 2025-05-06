@@ -2,4 +2,12 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 153. Documentação do cache do Next.js e atualizações futuras (use cache)
+Aula: 154. Full Route Cache com dynamic e dynamicParams ou generateStaticParams
+
+Seguindo a documentação, é possível forçar que uma rota estática se torne dinâmica ao instruir:
+
+export const dynamic = 'force-dynamic';
+
+Para forçar que uma rota seja estática:
+
+export const dynamic = 'force-static';
