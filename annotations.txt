@@ -2,49 +2,36 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 151. Nossas rotas + Entenda Static, Dynamic, SSG e ISR
+Aula: 152. Introdução ao cache do Next.js
 
-SSG -> Com o uso desse recurso do Next, o dev informa que o servidor deve
-pré-renderizar as rotas estáticas da aplicação.
-Essa tecnologia deve ser usado com cuidado, pois o Next armazena essas rotas estáticas
-em 'cache', assim, caso o dev não informe que elas devem atualizar (seja por qual
-motivo), elas não refletirão nenhuma alteração mesmo que o uso da aplicação modifique
-alguma coisa nessa rota.
+Nessa aula, foi mostrado o comportamento padrão do Next quando o desenvolvedor cria
+as rotas da sua aplicação. Ficou evidente a diferença de uma rota estática e uma rota
+dinâmica. Como o desenvolvedor pode ter mais controle sobre isso? É ao fazer a 'build'
+do projeto. Após esse processo ser concluído, no terminal, é possível observar o que,
+de fato, o Next fez com as rotas — automaticamente. Exemplo:
 
-Assim, o Next entende que o dev quer gerar uma página estática que não se comunica com
-seu servidor, ou seja, quando o usuário acessa essa rota estática, o Next busca seu conteúdo
-do 'cache' e não do servidor Next.
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      185 B         110 kB
+├ ○ /_not-found                            142 B         101 kB
+├ ○ /exemplo                               142 B         101 kB
+├ ƒ /exemplo/[id]                          142 B         101 kB
+└ ƒ /post/[slug]                           184 B         110 kB
++ First Load JS shared by all             101 kB
+  ├ chunks/4bd1b696-daa26928ff622cec.js  53.2 kB
+  ├ chunks/684-8c4ea80377268962.js       45.9 kB
+  └ other shared chunks (total)          1.89 kB
 
-O Next permite a combinação de rotas estáticas e rotas dinâmicas com o uso da tecnologia
-ISR (Incremental Static Regeneration).
 
-Essa tecnologia possibilita que um usuário, após determinado tempo, provoque uma REVALIDAÇÃO
-no 'cache' dessa página estática.
-Como assim?
-Ora, quando o desenvolvedor informa que uma rota será estática, o Next renderiza o conteúdo
-presente em seu 'cache' que é gerado no momento da 'build' do projeto.
-Com o uso dessa tecnologia, quando essa REVALIDAÇÃO é provocada, o Next REGENERA esse 'cache'
-buscando o conteúdo dessa página estática NO SERVIDOR, assim buscando as devidas atualizações,
-por exemplo na base de dados. Dessa forma, os próximos usuários do site utilizarão o 'cache'
-que fora REGENERADO pelo servidor Next. Esse é o comportamento que o ISG provoca na aplicação.
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
 
-O Next permite usar ISR, após algum conteúdo do site for alterado, ou seja, não necessariamente por tempo.
+Dessa forma, o desenvolvedor pode ter consciência de como suas rotas
+irão se comportar durante o clico de vida da aplicação.
 
-Obs.: é preciso distinguir as tecnologias de componentes das tecnologias de rotas que o Next proporciona:
+O coach-Luiz reforçou a importância do processo de 'build' no papel de apresentar
+ao desenvolvedor o real comportamento que sua aplicação terá, pois no modo de
+desenvolvimento, tudo aparenta ser dinâmico sendo que após a 'build' a aplicação
+se comportará de modo realístico ou no modo PRODUÇÃO.
 
-Server Side Rendering ->   componente
-Client Side Rendering ->   componente
-Static Site Generation ->       rotas
-Dynamic Routes --------->       rotas
-Incremental Site Regeneration -> rotas
-
-Mapeamento de rotas do projeto The Blog:
-
-/ (Pública) | ISR
-/post/[slug] (Pública) | ISR
-
-/admin/post (Privado) | Dynamic | Ler (R) Lista de posts / (D) Delete
-/admin/post/[id] (Privado) | Dynamic | Atualizar um post (U)
-/admin/post/new (Privado) | Dynamic | Criar um post (C)
-
-/admin/login (Pública) | Dynamic | Fazer o login do usuário
+O coach-Luiz recomendou fortemente ler a documentação do Next sobre 'caching' da aplicação.
+Essa parte da documentação apresenta como o Next.js funciona por debaixo dos panos.
