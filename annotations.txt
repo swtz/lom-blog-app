@@ -2,23 +2,49 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 150. Continuando a criação do repositório DrizzlePostRepository
+Aula: 151. Nossas rotas + Entenda Static, Dynamic, SSG e ISR
 
-Para ter mais clareza nas consultas feitas pelo DrizzlePostRepository,
-pode-se ler a documentação do Drizzle sobre 'operators'.
+SSG -> Com o uso desse recurso do Next, o dev informa que o servidor deve
+pré-renderizar as rotas estáticas da aplicação.
+Essa tecnologia deve ser usado com cuidado, pois o Next armazena essas rotas estáticas
+em 'cache', assim, caso o dev não informe que elas devem atualizar (seja por qual
+motivo), elas não refletirão nenhuma alteração mesmo que o uso da aplicação modifique
+alguma coisa nessa rota.
 
-Caso esses métodos de consulta retornem 'undefined', não esquecer de lançar uma exceção
-personalizada, a fim de saber o que houve de fato e também tratá-la usando o 'ErrorBoundary'
-do Next.
+Assim, o Next entende que o dev quer gerar uma página estática que não se comunica com
+seu servidor, ou seja, quando o usuário acessa essa rota estática, o Next busca seu conteúdo
+do 'cache' e não do servidor Next.
 
-Qual a parte mais legal disso tudo?
-Ora, ao alterar o objeto instanciado no arquivo 'src/repositories/post/index.ts' para a classe
-'DrizzlePostRepository', a aplicação NÃO SOFRERÁ NENHUM IMPACTO, pois ela depende da interface
-'PostRepository' e não da implementação 'JsonPostRepository' nem muito menos da 'DrizzlePostRepository'.
+O Next permite a combinação de rotas estáticas e rotas dinâmicas com o uso da tecnologia
+ISR (Incremental Static Regeneration).
 
-Esse é o potencial que o Design Pattern Repository proporciona para a aplicação. Com certeza também é
-levado em conta alguns princípios SOLID.
+Essa tecnologia possibilita que um usuário, após determinado tempo, provoque uma REVALIDAÇÃO
+no 'cache' dessa página estática.
+Como assim?
+Ora, quando o desenvolvedor informa que uma rota será estática, o Next renderiza o conteúdo
+presente em seu 'cache' que é gerado no momento da 'build' do projeto.
+Com o uso dessa tecnologia, quando essa REVALIDAÇÃO é provocada, o Next REGENERA esse 'cache'
+buscando o conteúdo dessa página estática NO SERVIDOR, assim buscando as devidas atualizações,
+por exemplo na base de dados. Dessa forma, os próximos usuários do site utilizarão o 'cache'
+que fora REGENERADO pelo servidor Next. Esse é o comportamento que o ISG provoca na aplicação.
 
-Lembrando que na pasta 'lib' as funções de busca estão em 'cache'. Isso foi possível, pois as essas funções
-dependem do objeto 'postRepository' o qual depende da abstração e não da implementação do método de consulta
-na base de dados. A aplicação usa essas funções que estão em 'cache'.
+O Next permite usar ISR, após algum conteúdo do site for alterado, ou seja, não necessariamente por tempo.
+
+Obs.: é preciso distinguir as tecnologias de componentes das tecnologias de rotas que o Next proporciona:
+
+Server Side Rendering ->   componente
+Client Side Rendering ->   componente
+Static Site Generation ->       rotas
+Dynamic Routes --------->       rotas
+Incremental Site Regeneration -> rotas
+
+Mapeamento de rotas do projeto The Blog:
+
+/ (Pública) | ISR
+/post/[slug] (Pública) | ISR
+
+/admin/post (Privado) | Dynamic | Ler (R) Lista de posts / (D) Delete
+/admin/post/[id] (Privado) | Dynamic | Atualizar um post (U)
+/admin/post/new (Privado) | Dynamic | Criar um post (C)
+
+/admin/login (Pública) | Dynamic | Fazer o login do usuário
