@@ -2,12 +2,14 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 154. Full Route Cache com dynamic e dynamicParams ou generateStaticParams
+Aula: 155. ISR (Incremental Static Regeneration) com revalidação por tempo (revalidate)
 
-Seguindo a documentação, é possível forçar que uma rota estática se torne dinâmica ao instruir:
+Essa aula vai mostrar os recursos que o Next oferece, para que o 'cache' seja atualizado.
 
-export const dynamic = 'force-dynamic';
+Para REVALIDAR o 'cache' com base no tempo:
 
-Para forçar que uma rota seja estática:
+export const revalidate = 10;
 
-export const dynamic = 'force-static';
+Lembrando que o tempo é em segundos e que esse é o tempo de duração do 'cache', ou seja, após
+esse período, o próximo usuário que acessar essa rota provocará a REVALIDAÇÃO desse 'cache'; assim,
+somente o PRÓXIMO USUÁRIO obterá o valor do 'cache' foi atualizado pelo Next.
