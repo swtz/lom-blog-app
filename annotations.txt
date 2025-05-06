@@ -2,7 +2,37 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 145. Instalando o Drizzle ORM para base de dados
+Aula: 146. Configurando o Drizzle o nosso primeiro Schema (tabela da base de dados)
 
-npm i drizzle-orm
-sudo apt install sqlite3
+npm install sqlite3
+npm i -D drizzle-kit
+
+Basicamente, o arquivo 'drizzle.config.js' é usado pelo pacote 'drizzle-kit'. Nele foram
+definidas algumas configurações como onde vão ser salvas as 'migrations' e onde serão
+salvas as tabelas do banco de dados. É claro que na documentação há mais esclarecimentos
+dessas configurações.
+
+Como definido nessas configurações, o arquivo 'schemas.ts' é basicamente a tabela do banco
+dados que conterá a estrutura principal deles.
+
+Exemplo de como fica o arquivo 'schemas.ts':
+
+import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+
+export const postsTable = sqliteTable('posts', {
+  id: text('id').primaryKey(),
+  slug: text('id').notNull().unique(),
+  title: text('title').notNull(),
+  author: text('author').notNull(),
+  excerpt: text('excerpt').notNull(),
+  content: text('content').notNull(),
+  coverImageUrl: text('cover_image_url').notNull(),
+  published: integer('published', { mode: 'boolean' }).notNull(),
+  createdAt: text('created_at').notNull(),
+  updatedAt: text('updated_at').notNull(),
+});
+
+Tipagem:
+
+export type PostsTableSelectMode = InferSelectModel<typeof postsTable>;
+export type PostsTableInsertMode = InferInsertModel<typeof postsTable>;
