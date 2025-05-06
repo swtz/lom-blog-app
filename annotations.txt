@@ -2,23 +2,16 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 147. Conexão Drizzle ORM + migrations para gerenciar as tabelas da base de dados
+Aula: 148. Usando a seed de posts.json para popular a base de dados
 
-Decidi seguir a aula à risca (uso do better-sqlite3 ao invés do sqlite3):
+No arquivo 'src/db/drizzle/seed.ts' há o código que "popula" a base de dados
+usando o arquivo 'posts.json'. É interessante que são obtidos os dados dos posts
+por meio do método presente no repositório que lida com os arquivos JSON. Assim,
+é usado o comando:
 
-npm i drizzle-orm better-sqlite3
-npm i -D drizzle-kit @types/better-sqlite3
+await drizzleDb.insert(postsTable).values(posts);
 
-Com o arquivo de configuração pronto e a conexão feita (arquivo 'src/db/drizzle/index.ts'),
-é possível testar se o banco de dados está funcionando. Basta informa no terminal:
-
-npx drizzle-kit generate | são geradas as migrações da base de dados, ou seja, os comandos
-SQL a serem executados
-
-npx drizzle-kit migrate | os comandos gerados são aplicados.
-
-Ao informar esse último comando, é preciso ter cuidado, pois ele altera o banco de dados
-definitivamente.
-
-Nota: os comandos usados para teste foram instruídos em um novo arquivo dentro do diretório
-que contém a conexão.
+Ou seja, o método 'values' está recebendo um array de objetos do tipo 'PostModel'.
+O conteúdo desses posts é inserido em cada 'row' da base de dados com base no 'schema'
+que fora definido nas aulas anteriores. Caso se faça uma consulta nesse banco de dados,
+serão exibidos os dados do post corretamente.
