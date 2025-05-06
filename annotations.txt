@@ -2,16 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 148. Usando a seed de posts.json para popular a base de dados
-
-No arquivo 'src/db/drizzle/seed.ts' há o código que "popula" a base de dados
-usando o arquivo 'posts.json'. É interessante que são obtidos os dados dos posts
-por meio do método presente no repositório que lida com os arquivos JSON. Assim,
-é usado o comando:
-
-await drizzleDb.insert(postsTable).values(posts);
-
-Ou seja, o método 'values' está recebendo um array de objetos do tipo 'PostModel'.
-O conteúdo desses posts é inserido em cada 'row' da base de dados com base no 'schema'
-que fora definido nas aulas anteriores. Caso se faça uma consulta nesse banco de dados,
-serão exibidos os dados do post corretamente.
+Aula: 149. Criando o repositório DrizzlePostRepository

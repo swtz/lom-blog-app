@@ -3,7 +3,7 @@ import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const postsTable = sqliteTable('posts', {
   id: text('id').primaryKey(),
-  slug: text('id').notNull().unique(),
+  slug: text('slug').notNull().unique(),
   title: text('title').notNull(),
   author: text('author').notNull(),
   excerpt: text('excerpt').notNull(),

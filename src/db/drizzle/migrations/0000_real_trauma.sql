@@ -1,5 +1,6 @@
 CREATE TABLE `posts` (
-	`id` text NOT NULL,
+	`id` text PRIMARY KEY NOT NULL,
+	`slug` text NOT NULL,
 	`title` text NOT NULL,
 	`author` text NOT NULL,
 	`excerpt` text NOT NULL,
@@ -10,4 +11,4 @@ CREATE TABLE `posts` (
 	`updated_at` text NOT NULL
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `posts_id_unique` ON `posts` (`id`);
+CREATE UNIQUE INDEX `posts_slug_unique` ON `posts` (`slug`);
