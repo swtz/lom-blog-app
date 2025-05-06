@@ -2,4 +2,23 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 149. Criando o repositório DrizzlePostRepository
+Aula: 150. Continuando a criação do repositório DrizzlePostRepository
+
+Para ter mais clareza nas consultas feitas pelo DrizzlePostRepository,
+pode-se ler a documentação do Drizzle sobre 'operators'.
+
+Caso esses métodos de consulta retornem 'undefined', não esquecer de lançar uma exceção
+personalizada, a fim de saber o que houve de fato e também tratá-la usando o 'ErrorBoundary'
+do Next.
+
+Qual a parte mais legal disso tudo?
+Ora, ao alterar o objeto instanciado no arquivo 'src/repositories/post/index.ts' para a classe
+'DrizzlePostRepository', a aplicação NÃO SOFRERÁ NENHUM IMPACTO, pois ela depende da interface
+'PostRepository' e não da implementação 'JsonPostRepository' nem muito menos da 'DrizzlePostRepository'.
+
+Esse é o potencial que o Design Pattern Repository proporciona para a aplicação. Com certeza também é
+levado em conta alguns princípios SOLID.
+
+Lembrando que na pasta 'lib' as funções de busca estão em 'cache'. Isso foi possível, pois as essas funções
+dependem do objeto 'postRepository' o qual depende da abstração e não da implementação do método de consulta
+na base de dados. A aplicação usa essas funções que estão em 'cache'.
