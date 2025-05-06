@@ -2,14 +2,62 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 155. ISR (Incremental Static Regeneration) com revalidação por tempo (revalidate)
+Aula: 156. Conheça as Server Actions (use server)
 
-Essa aula vai mostrar os recursos que o Next oferece, para que o 'cache' seja atualizado.
+Nessa aula é apresentada a diretiva 'use client'. Entretanto, ela é usada
+SOMENTE PARA INDICAR QUE O ARQUIVO OU FUNÇÃO representa uma Server Action, ou seja,
+a diretiva torna essa função uma Server Action.
 
-Para REVALIDAR o 'cache' com base no tempo:
+Server Actions são funções que basicamente rodam no lado do servidor.
+Elas substituem as rotas que antigamente eram criadas no diretório 'src/api'.
 
-export const revalidate = 10;
+Assim, qualquer funcionalidade que envolva questões de backend, pode ser desenvolvida
+um um projeto Next usando essa diretiva, pois ela assegura que essa função funcionará
+somente 'server-side'.
 
-Lembrando que o tempo é em segundos e que esse é o tempo de duração do 'cache', ou seja, após
-esse período, o próximo usuário que acessar essa rota provocará a REVALIDAÇÃO desse 'cache'; assim,
-somente o PRÓXIMO USUÁRIO obterá o valor do 'cache' foi atualizado pelo Next.
+Eis a questão:
+
+Como posso criar uma interação com o usuário dentro de um componente 'server-side' sem
+que eu o torne 'client-side'?
+
+Uma maneira de fazer isso é criando um formulário e passando uma 'server-action' como
+valor da 'prop' 'action':
+
+<form action={revalidateExampleAction}>
+  <input type='hidden' name='path' defaultValue={`/exemplo/${id}`} />
+
+  <button
+    type='submit'
+  >
+    Revalidate
+  </button>
+</form>
+
+'form-action': revalidateExampleAction
+
+Ao clicar no botão, a 'server-action' é executada!
+
+Qual a utilidade disso? Veja o exemplo abaixo:
+
+[no arquivo 'src/actions/revalidate-example.ts']
+
+'use server';
+
+export async function revalidateExampleAction(formData: FormData) {
+  const path = formData.get('path') || '';
+  console.log('Estou em uma server action.', path);
+}
+
+Nota-se que é possível pegar o objeto que contém os dados do formulário (pois esse
+foi enviado por um 'button' do tipo 'submit'). Assim, é feita uma interação com o usuário
+pegando os dados de um formulário sem que o componente que possui o formulário se transforme
+em um componente 'cliente-side'.
+
+Qual a finalidade desse código?
+
+Quando a rota que possui o formulário passar pelo processo de 'build', ela será estática. Logo,
+o conteúdo dela não poderá ser mais atualizado, pois o Next renderizará o conteúdo gerado no 'cache'.
+
+Entretanto, com 'server-action', é possível usar o método (revalidatePath) que permite REVALIDAR o
+'cache' da rota com base em no 'path' da rota. Assim, esse 'cache' é reconstruído de maneira manual, isto
+é, toda vez que o usuário apertar o botão, assim disparando a 'server-action'.
