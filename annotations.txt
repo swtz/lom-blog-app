@@ -2,12 +2,7 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 161. Criando as rotas da área administrativa do site (admin)
+Aula: 162. Separando as queries em Admin e Public
 
-As rotas da área 'admin' estão sendo forçadas a serem dinâmicas com a instrução:
-
-export const dynamic = 'force-dynamic';
-
-Essa instrução pode ficar no topo do arquivo.
-
-A única rota que será estática é a 'post/new/page.tsx'
+As 'queries' da área administrativa não levarão em conta se o 'post' está publicado ou não
+(diferentemente das 'queries' usadas na área pública do blog).
