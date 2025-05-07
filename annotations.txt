@@ -2,18 +2,12 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 160. Usando unstable_cache para cache de funções (Data Cache)
+Aula: 161. Criando as rotas da área administrativa do site (admin)
 
-Aula referência!
+As rotas da área 'admin' estão sendo forçadas a serem dinâmicas com a instrução:
 
-Fluxo (abstraído):
+export const dynamic = 'force-dynamic';
 
-Componente dinâmico com 'force-static' -> função em 'cache' -> atualização no bd -> server-action
--> Componente dinâmico usa função com 'cache' atualizado.
+Essa instrução pode ficar no topo do arquivo.
 
-Esse comportamento reduz drasticamente os acessos ao banco de dados, pois, enquanto a 'server-action'
-não for disparada, o Next busca os dados retornados pela função, que acessa o banco de dados do 'cache'.
-
-Por isso, é bem importante que o desenvolvedor defina as condições que INVALIDAM o 'cache' de modo sábio.
-
-Lembrando: o funcionamento do 'cache' é posto à prova após a 'build' do projeto e com 'npm start'!
+A única rota que será estática é a 'post/new/page.tsx'
