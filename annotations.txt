@@ -2,28 +2,39 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 157. Usando revalidatePath para revalidar o cache manualmente
+Aula: 158. Data cache e fetching com a Fetch API + Tags e revalidateTag
 
-Só lembrando que, no momento, não existe um padrão de nomenclatura para as 'server-actions',
-porque o desenvolvimento sempre foi feito usando 'endpoints' de API.
+Nesse projeto, não será usada uma API para comunicação com algum 'backend' externo.
+Tudo será feito por dentro do Next (com auxílio das 'server-actions').
 
-Elas introduzem um novo paradigma na comunicação de 'frontend' com o 'backend'.
+Assim, o recurso de Data Fetching se aplica apenas ao uso da Fetch API.
 
-Quando uma 'server-action' é usada na 'prop' 'action' do elemento JSX 'form',
-é feita uma requisição (por exemplo, por meio de um 'button' do tipo 'submit')
-com o método HTTP 'Post' por padrão.
+Será usada uma API como exemplo que é disponibilizada no site:
+https://randomuser.me/documentation
 
-Independentemente da finalidade da 'server-action', ela se comportará como 'Post';
+O processo que provoca o Next à revalidar o 'cache' é muitas vezes orientado pela ação de
+'invalidar o cache', ou seja, o desenvolvedor informa para o Next que o 'cache' está
+"inválido", provocando ele a REVALIDAR esse 'cache'. É exatamente isso que está sendo visto
+durante essas aulas.
 
-Para revalidar com manualmente com base no caminho da rota ou 'path':
+Com o uso de 'fetch', é possível informar ao método de que não se quer fazer 'cache' das requisições:
 
-revalidatePath(<path>);
+const response = await fetch('https://randomuser.me/api/?results=1', {
+  cache: 'no-store',
+});
 
-Essa função do Next pode ser colocada em uma 'server-action'. Assim, quando o usuário
-dispara essa função, na PRÓXIMA REQUISIÇÃO, n Next atualizará o valor do 'cache'.
-Após isso, o valor ficará estático novamente podendo ser atualizado caso o usuário dispare
-outra 'server-action', por exemplo via 'form'.
+Exemplo de uso informando ao método para fazer 'cache':
 
-É possível combinar 'revalidate' (definido na rota dinâmica que está sendo forçada a ser estática)
-com 'revalidatePath' (que é definido na 'server-action'). Assim o 'cache' da rota é revalidado por
-tempo e de modo manual pelo 'path'.
+const response = await fetch('https://randomuser.me/api/?results=1', {
+  next: {
+    tags: ['randomuser'],
+    revalidate: 30,
+  },
+});
+
+[na 'server-action']:
+
+revalidateTag('randomuser');
+
+Esse recurso pode não continuar com essas instruções, pois a documentação do Next alerta que isso pode
+mudar em atualizações futuras.
