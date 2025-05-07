@@ -2,6 +2,7 @@ import { PostModel } from '@/models/post/post-model';
 import { PostRepository } from './post-repository';
 import { drizzleDb } from '@/db/drizzle';
 import { eq } from 'drizzle-orm';
+import { logColor } from '@/utils/log-color';
 
 export class DrizzlePostRepository implements PostRepository {
   async findAllPublic(): Promise<PostModel[]> {
@@ -13,6 +14,7 @@ export class DrizzlePostRepository implements PostRepository {
     return posts;
   }
   async findBySlugPublic(slug: string): Promise<PostModel> {
+    logColor('findBySlugPublic');
     const post = await drizzleDb.query.posts.findFirst({
       where: (posts, { and }) =>
         and(eq(posts.published, true), eq(posts.slug, slug)),
