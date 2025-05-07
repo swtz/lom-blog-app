@@ -2,26 +2,18 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 159. Nova diretiva use cache, cacheLife e cacheTag (experimental)
+Aula: 160. Usando unstable_cache para cache de funções (Data Cache)
 
-Em suma, essas funcionalidades permitem fazer 'cache' de pequenas partes do código.
-Assim, permitem fazer 'cache' também de funções sem a necessidade de usar um 'endpoint'
-de 'backend' (como a Fetch API).
+Aula referência!
 
-Essas funções precisam ser assíncronas.
+Fluxo (abstraído):
 
-Caso essa função (que será posta em 'cache') possuir parâmetros dinâmicos
-(que mudam a cada chamada), é preciso envolvê-la em uma função que retorna a função original.
+Componente dinâmico com 'force-static' -> função em 'cache' -> atualização no bd -> server-action
+-> Componente dinâmico usa função com 'cache' atualizado.
 
-Essa função que está envolvendo a função original é a que será feito o 'cache'. Ela também
-será chamada na rota em questão.
+Esse comportamento reduz drasticamente os acessos ao banco de dados, pois, enquanto a 'server-action'
+não for disparada, o Next busca os dados retornados pela função, que acessa o banco de dados do 'cache'.
 
-O ponto é: não vai funcionar o 'cache' em uma função que possui parâmetros dinâmicos, pois,
-como a cada chamada o valor do parâmetro muda, será feito o 'cache' dela toda vez que ela
-for chamada.
+Por isso, é bem importante que o desenvolvedor defina as condições que INVALIDAM o 'cache' de modo sábio.
 
-Qual a utilidade?
-É a possibilidade de fazer 'cache' de uma parte específica do código. No caso da função, do valor
-que ela obtém ou retorna.
-
-A diretiva 'use cache' pode ser informada a nível de arquivo, componente e função.
+Lembrando: o funcionamento do 'cache' é posto à prova após a 'build' do projeto e com 'npm start'!

@@ -1,8 +1,6 @@
 import { revalidateExampleAction } from '@/actions/revalidate-example';
 import { formatHour } from '@/utils/format-datetime';
-import { unstable_cacheTag } from 'next/cache';
 
-// export const dynamic = 'force-static';
 // export const revalidate = 10;
 
 export default async function ExemploDynamicPage({
@@ -10,9 +8,6 @@ export default async function ExemploDynamicPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  'use cache';
-  unstable_cacheTag('exemploDynamicPage');
-
   const { id } = await params;
   const hour = formatHour(Date.now());
 

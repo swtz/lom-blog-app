@@ -4,6 +4,8 @@ import { SinglePost } from '@/components/SinglePost';
 import { Suspense } from 'react';
 import { SpinLoader } from '@/components/SpinLoader';
 
+export const dynamic = 'force-static';
+
 type PostSlugPageProps = {
   params: Promise<{ slug: string }>;
 };
