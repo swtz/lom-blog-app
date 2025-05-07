@@ -2,39 +2,26 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 158. Data cache e fetching com a Fetch API + Tags e revalidateTag
+Aula: 159. Nova diretiva use cache, cacheLife e cacheTag (experimental)
 
-Nesse projeto, não será usada uma API para comunicação com algum 'backend' externo.
-Tudo será feito por dentro do Next (com auxílio das 'server-actions').
+Em suma, essas funcionalidades permitem fazer 'cache' de pequenas partes do código.
+Assim, permitem fazer 'cache' também de funções sem a necessidade de usar um 'endpoint'
+de 'backend' (como a Fetch API).
 
-Assim, o recurso de Data Fetching se aplica apenas ao uso da Fetch API.
+Essas funções precisam ser assíncronas.
 
-Será usada uma API como exemplo que é disponibilizada no site:
-https://randomuser.me/documentation
+Caso essa função (que será posta em 'cache') possuir parâmetros dinâmicos
+(que mudam a cada chamada), é preciso envolvê-la em uma função que retorna a função original.
 
-O processo que provoca o Next à revalidar o 'cache' é muitas vezes orientado pela ação de
-'invalidar o cache', ou seja, o desenvolvedor informa para o Next que o 'cache' está
-"inválido", provocando ele a REVALIDAR esse 'cache'. É exatamente isso que está sendo visto
-durante essas aulas.
+Essa função que está envolvendo a função original é a que será feito o 'cache'. Ela também
+será chamada na rota em questão.
 
-Com o uso de 'fetch', é possível informar ao método de que não se quer fazer 'cache' das requisições:
+O ponto é: não vai funcionar o 'cache' em uma função que possui parâmetros dinâmicos, pois,
+como a cada chamada o valor do parâmetro muda, será feito o 'cache' dela toda vez que ela
+for chamada.
 
-const response = await fetch('https://randomuser.me/api/?results=1', {
-  cache: 'no-store',
-});
+Qual a utilidade?
+É a possibilidade de fazer 'cache' de uma parte específica do código. No caso da função, do valor
+que ela obtém ou retorna.
 
-Exemplo de uso informando ao método para fazer 'cache':
-
-const response = await fetch('https://randomuser.me/api/?results=1', {
-  next: {
-    tags: ['randomuser'],
-    revalidate: 30,
-  },
-});
-
-[na 'server-action']:
-
-revalidateTag('randomuser');
-
-Esse recurso pode não continuar com essas instruções, pois a documentação do Next alerta que isso pode
-mudar em atualizações futuras.
+A diretiva 'use cache' pode ser informada a nível de arquivo, componente e função.
