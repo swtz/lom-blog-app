@@ -2,12 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 168. Layout de um componente de caixa de diálogo com Tailwind CSS (Dialog)
-
-Dica TW:
-
-<div className='top-0 bottom-0 left-0 right-0'>
-
-essas 'css rules' podem ser resumidas com a classe
-
-<div className='inset-0'>
+Aula: 169. Dialog: adicionando as funcionalidades do componente
