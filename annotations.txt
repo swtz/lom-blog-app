@@ -2,4 +2,28 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 164. Comportamento do Suspense e Loading com e sem Cache no Next.js
+Aula: 165. Estilizando PostsListAdmin com Tailwind CSS
+
+npm i lucide-react
+
+Dica CSS:
+
+button svg {
+  ...
+}
+
+Acima, aplica em todos os svg's (inclusive se houver elementos filhos contendo svg).
+
+button > svg {
+  ...
+}
+
+Acima, aplica apenas no filho direto de 'button'.
+
+No TW:
+
+<button
+  className={'[&_svg]:<css-rule> [&_svg]:<css-rule>'}
+>
+
+Não pode haver espaços nessas instruções do TW.
