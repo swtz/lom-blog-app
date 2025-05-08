@@ -2,28 +2,18 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 165. Estilizando PostsListAdmin com Tailwind CSS
+Aula: 166. Movendo o botão para DELETE do post para um Client Component (use client)
 
-npm i lucide-react
+Qualquer interação — seja do usuário ou de um sistema — que envolva comunicação com
+a base de dados, ao desenvolver com Next, é preciso usar as 'server-actions'.
 
-Dica CSS:
+O funcionamento da 'server-action' usando um elemento JSX 'form' é permitido até
+mesmo com o JavaScript do browser desabilitado.
 
-button svg {
-  ...
-}
+Nessa aula, o coach-Luiz ressaltou que um componente que depende de um 'feedback' do usuário,
+deve ser movido para um componente 'client-side' por poder usufruir de mais recursos oriundos
+da API do browser.
 
-Acima, aplica em todos os svg's (inclusive se houver elementos filhos contendo svg).
-
-button > svg {
-  ...
-}
-
-Acima, aplica apenas no filho direto de 'button'.
-
-No TW:
-
-<button
-  className={'[&_svg]:<css-rule> [&_svg]:<css-rule>'}
->
-
-Não pode haver espaços nessas instruções do TW.
+Qual o objetivo dessa mudança?
+Somente o componente que precisa desse 'feedback' será renderizado pelo lado do cliente. Todo
+o componente restante que usa ele, pode usar os recursos 'server-side' do Next.
