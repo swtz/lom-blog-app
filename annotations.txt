@@ -2,11 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 163. Correção de bug no cache + função de log para separar nossos logs do Next.js
-
-Sobre as funções em 'cache' no arquivo 'lib/post/queries/public.ts':
-
-cache() -> concentra todas as chamadas dessa função em uma só ("desduplica" requisições)
-
-unstable_cache() -> recurso experimental do Next voltado ao 'data cache', ou seja, se preocupa
-em fazer 'cache' dos dados retornados pela função interna.
+Aula: 164. Comportamento do Suspense e Loading com e sem Cache no Next.js
