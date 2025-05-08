@@ -2,18 +2,44 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 166. Movendo o botão para DELETE do post para um Client Component (use client)
+Aula: 167. Usando server actions e useTransition em componentes cliente
 
-Qualquer interação — seja do usuário ou de um sistema — que envolva comunicação com
-a base de dados, ao desenvolver com Next, é preciso usar as 'server-actions'.
+Nessa aula foi ensinada uma técnica com o uso do 'hook' useTransition.
+Sintaxe:
 
-O funcionamento da 'server-action' usando um elemento JSX 'form' é permitido até
-mesmo com o JavaScript do browser desabilitado.
+const [isPending, startTransition] = useTransition();
 
-Nessa aula, o coach-Luiz ressaltou que um componente que depende de um 'feedback' do usuário,
-deve ser movido para um componente 'client-side' por poder usufruir de mais recursos oriundos
-da API do browser.
+Basicamente, o React permite que o desenvolvedor coloque uma função dentro
+do método 'startTransition'.
+A variável 'isPending' contém um valor 'boolean' que é alterado dependendo do 'status'
+da função que foi posta dentro de 'startTransition', ou seja, se ainda não foi concluída é
+'true', senão é 'false'.
+Nessa aula, essa variável foi usada para DESABILITAR o botão que aciona a 'server-action' por
+meio do evento 'click'.
+Isso é útil para evitar acúmulos de chamada de funções que demoram um pouco para serem resolvidas,
+tais como as que se comunicam com recursos externos ao website.
+Exemplo de uso:
 
-Qual o objetivo dessa mudança?
-Somente o componente que precisa desse 'feedback' será renderizado pelo lado do cliente. Todo
-o componente restante que usa ele, pode usar os recursos 'server-side' do Next.
+function handleClick() {
+  if (!confirm('Tem certeza?')) return;
+
+  startTransition(async () => {
+    const result = await myAsyncFunction(id);
+    alert('O result é: ' + result);
+  });
+}
+
+<button
+  className={clsx(
+    'text-red-500 cursor-pointer transition',
+    'hover:scale-120 hover:text-red-700',
+    'disabled:text-slate-600 disabled:cursor-not-allowed',
+  )}
+  aria-label={'some text here'}
+  title={'some text here'}
+  onClick={handleClick}
+  disabled={isPending}
+>
+
+Lembrando que o TW elimina quaisquer estilos padrões que o HTML/CSS possuem.
+Por isso, é preciso identificar para o usuário que o botão está desabilitado.
