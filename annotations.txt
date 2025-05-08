@@ -2,44 +2,12 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 167. Usando server actions e useTransition em componentes cliente
+Aula: 168. Layout de um componente de caixa de diálogo com Tailwind CSS (Dialog)
 
-Nessa aula foi ensinada uma técnica com o uso do 'hook' useTransition.
-Sintaxe:
+Dica TW:
 
-const [isPending, startTransition] = useTransition();
+<div className='top-0 bottom-0 left-0 right-0'>
 
-Basicamente, o React permite que o desenvolvedor coloque uma função dentro
-do método 'startTransition'.
-A variável 'isPending' contém um valor 'boolean' que é alterado dependendo do 'status'
-da função que foi posta dentro de 'startTransition', ou seja, se ainda não foi concluída é
-'true', senão é 'false'.
-Nessa aula, essa variável foi usada para DESABILITAR o botão que aciona a 'server-action' por
-meio do evento 'click'.
-Isso é útil para evitar acúmulos de chamada de funções que demoram um pouco para serem resolvidas,
-tais como as que se comunicam com recursos externos ao website.
-Exemplo de uso:
+essas 'css rules' podem ser resumidas com a classe
 
-function handleClick() {
-  if (!confirm('Tem certeza?')) return;
-
-  startTransition(async () => {
-    const result = await myAsyncFunction(id);
-    alert('O result é: ' + result);
-  });
-}
-
-<button
-  className={clsx(
-    'text-red-500 cursor-pointer transition',
-    'hover:scale-120 hover:text-red-700',
-    'disabled:text-slate-600 disabled:cursor-not-allowed',
-  )}
-  aria-label={'some text here'}
-  title={'some text here'}
-  onClick={handleClick}
-  disabled={isPending}
->
-
-Lembrando que o TW elimina quaisquer estilos padrões que o HTML/CSS possuem.
-Por isso, é preciso identificar para o usuário que o botão está desabilitado.
+<div className='inset-0'>
