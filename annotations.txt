@@ -2,21 +2,6 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 170. Iniciando a Server Action deletePostAction para apagar posts
+Aula: 171. Configurando o React Toastify para exibir mensagens ao usuário
 
-Será desenvolvida a 'server-action' que se comunicará com o banco de dados.
-Os mesmos cuidados que são tomados ao trabalhar com 'endpoints' de API devem
-ser tomados ao desenvolver essa função, tais como checagem de informações que
-são recebidos por ela por meio de 'inputs' do usuário, por exemplo.
-
-Por que é importante fazer a checagem do tipo dos dados recebidos?
-Em desenvolvimento, o TypeScript ajuda o desenvolvedor a informar o tipo correto
-do dado. Entretanto, no ambiente de produção, não existe TypeScript. Por isso,
-é de extrema importância garantir que o usuário esteja enviando o formato e tipo
-correto dos dados.
-
-Sempre que for feita qualquer alteração na base de dados usando uma função que está
-em 'cache' é preciso INVALIDAR esse cache, para que o Next REVALIDE esse 'cache', a fim
-de obter as últimas alterações. Por isso é de suma importância prestar atenção em quais
-componentes — inclusive rotas — estão usando funções que fazem consultas na base de dados
-e que estão sendo "cacheadas".
+npm i react-toastify
