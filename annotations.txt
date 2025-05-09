@@ -2,4 +2,9 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 175. Sobre a criação dos componentes de Form com Tailwind CSS, clsx e JSX
+Aula: 176. Usando TypeScript para adicionar variações de estilo no componente
+
+A maioria dos erros que o TypeScript aponta para o desenvolvedor são erros
+causador pelo próprio código desenvolvido. Normalmente, o TypeScript prevê o
+erro antes da execução do código. Por isso, muitas vezes, é importante parar e
+raciocinar, a fim de entender o porquê aquele pedaço de código está grifado.
