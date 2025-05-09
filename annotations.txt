@@ -2,4 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 172. Layout e Navegação interna da área administrativa do blog
+Aula: 173. Estilizando o MenuAdmin com Tailwind CSS
