@@ -2,9 +2,8 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 176. Usando TypeScript para adicionar variações de estilo no componente
+Aula: 177. Concluindo o Button e ajustando os botões do Dialog
 
-A maioria dos erros que o TypeScript aponta para o desenvolvedor são erros
-causador pelo próprio código desenvolvido. Normalmente, o TypeScript prevê o
-erro antes da execução do código. Por isso, muitas vezes, é importante parar e
-raciocinar, a fim de entender o porquê aquele pedaço de código está grifado.
+O TW possui uma ordem de aplicação das propriedades CSS no elementos.
+
+As aulas 175 — 177 possuem dicas CSS bem interessantes e também relacionadas ao flex-box.
