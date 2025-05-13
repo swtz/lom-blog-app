@@ -2,8 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 178. Criando o componente InputText para o formulário
-
-useId();
-
-É um hook do React útil para gerar ID's aleatórios.
+Aula: 179. Criando o componente para InputCheckbox
