@@ -2,4 +2,9 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 180. Formulário de criação e edição do post (ManagePostForm)
+Aula: 181. Criando o editor Markdown com @uiw/react-md-editor
+
+npm i @uiw/react-md-editor
+
+Há algumas anotações no componente 'MarkdownEditor' que são relacionadas à segurança
+do componente quanto a ataques XSS (Cross-Site Scripting).
