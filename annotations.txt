@@ -2,4 +2,7 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 185. Validando o arquivo de imagem enviado ao servidor
+Aula: 186. Salvando a imagem enviada dentro do servidor com JS + Node
+
+Lembrando que o valor da constante 'IMAGE_SERVER_URL' mudará, pois, para o site em
+produção, será usado um servidor 'nginx' para servir as imagens enviadas pelo usuário.

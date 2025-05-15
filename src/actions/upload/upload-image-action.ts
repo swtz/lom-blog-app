@@ -1,6 +1,12 @@
 'use server';
 
-import { IMAGE_UPLOADER_MAX_SIZE } from '@/lib/constants';
+import { mkdir, writeFile } from 'fs/promises';
+import { extname } from 'path';
+import {
+  IMAGE_SERVER_URL,
+  IMAGE_UPLOAD_DIRECTORY,
+  IMAGE_UPLOADER_MAX_SIZE,
+} from '@/lib/constants';
 
 type UploadImageActionResult = {
   url: string;
@@ -11,6 +17,7 @@ export async function uploadImageAction(
   formData: FormData,
 ): Promise<UploadImageActionResult> {
   const makeResult = ({ url = '', error = '' }) => ({ url, error });
+  // TODO: checar se usuário está logado
 
   if (!(formData instanceof FormData)) {
     return makeResult({ error: 'Dados inválidos.' });
@@ -30,6 +37,20 @@ export async function uploadImageAction(
     return makeResult({ error: 'Imagem inválida.' });
   }
 
+  const imageExtension = extname(file.name);
+  const uniqueImageName = `${Date.now()}${imageExtension}`;
+
+  const uploadsFullPath = `${process.cwd()}/public/${IMAGE_UPLOAD_DIRECTORY}`;
+  await mkdir(uploadsFullPath, { recursive: true });
+
+  const fileArrayBuffer = await file.arrayBuffer(); // transforma em bytes
+  const buffer = Buffer.from(fileArrayBuffer); // transforma em um formato que o node entende
+
+  const fileFullPath = `${uploadsFullPath}/${uniqueImageName}`; // caminho completo do arquivo (com extensão)
+  await writeFile(fileFullPath, buffer); // arg0: full path, arg1: dados do arquivo em bytes
+
+  const url = `${IMAGE_SERVER_URL}/${uniqueImageName}`;
+
   // TODO: enviei o arquivo
-  return makeResult({ url: 'URL' });
+  return makeResult({ url });
 }
