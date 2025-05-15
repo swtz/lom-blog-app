@@ -41,7 +41,16 @@ export function ImageUploader() {
     formData.append('file', file);
 
     startTransition(async () => {
-      const result = await uploadImageAction();
+      const result = await uploadImageAction(formData);
+
+      if (result.error) {
+        toast.error(result.error);
+        fileInput.value = '';
+        return;
+      }
+
+      // TODO: próxima aula
+      toast.success(result.url);
     });
 
     fileInput.value = ''; // reset do campo 'input'
