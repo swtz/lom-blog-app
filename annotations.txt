@@ -2,9 +2,18 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 181. Criando o editor Markdown com @uiw/react-md-editor
+Aula: 182. ImageUploader - input (file) e botão para upload de imagens
 
-npm i @uiw/react-md-editor
+Ao trabalhar com o 'input' do tipo 'file', é importante fazer a validação completa
+do arquivo, tanto no 'frontend' quanto no 'backend'.
 
-Há algumas anotações no componente 'MarkdownEditor' que são relacionadas à segurança
-do componente quanto a ataques XSS (Cross-Site Scripting).
+Dica CSS:
+
+Quando um elemento pai possui a css rule 'flex flex-col', por padrão a css rule 'items-stretch'
+é aplicada, assim os elementos filhos esticam o máximo possível para ocupar 100% do espaço disponível.
+
+Caso o programador queira modificar esse comportamento em um único elemento filho, é possível
+usar a css rule 'self-[value]' nesse elemento filho.
+
+Essa aula mostra uma maneira de provocar um 'click' em um elemento 'input' por meio de um componente
+React customizado.

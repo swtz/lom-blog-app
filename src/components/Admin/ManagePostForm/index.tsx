@@ -5,6 +5,7 @@ import { Button } from '@/components/Button';
 import { InputCheckbox } from '@/components/InputCheckbox';
 import { InputText } from '@/components/InputText';
 import { MarkdownEditor } from '@/components/MarkdownEditor';
+import { ImageUploader } from '../ImageUploader';
 
 export function ManagePostForm() {
   const [contentValue, setContentValue] = useState('');
@@ -14,6 +15,8 @@ export function ManagePostForm() {
       <div className='flex flex-col gap-6'>
         <InputText labelText='Nome' placeholder='Digite seu nome' />
         <InputText labelText='Sobrenome' placeholder='Digite seu sobrenome' />
+
+        <ImageUploader />
 
         <InputCheckbox labelText='custom checkbox' />
 
