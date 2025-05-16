@@ -2,36 +2,35 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 190. Entenda o hook useActionState para Server Actions, Formulários e Estado (state)
+Aula: 191. Mantenha o estado do form com useActionState e FormData
 
-O hook useActionState permite trabalhar com 'server-actions' com a funcionalidade de
-manter o Estado entre as requisições que são feitas pelo lado do cliente (com o uso desse hook)
-e o recebimento delas pelo 'server-action'.
+O 'arg1' da 'server-action' usada no primeiro parâmetro do hook 'useActionState' são
+os dados que vem do formulário. É um objeto do tipo 'FormData' que carrega TODOS os
+campos do 'form'. As chaves desse objeto são os nomes que os campos possuem (atributo
+'name' do elemento JSX).
 
-O coach-Luiz afirmou que é como se fosse um 'reducer', porém sendo desenvolvido pensando
-em requisições 'http'.
+Exemplo de como fica a 'server-action':
 
-O objeto que a 'server-action' retorna, vira o Estado atual entregue pelo hook 'useActionState'.
+type CreateActionState = {
+  formState: PublicPost;
+  errors: string[];
+};
 
-Sintaxe:
+export async function createPostAction(
+  prevState: CreateActionState,
+  formData: FormData,
+): Promise<CreateActionState> {
+  const title = formData.get('title')?.toString() || '';
 
-const [state, action, isPending] = useActionState(myServerAction, initialState);
+  return {
+    formState: { ...prevState.formState, title },
+    errors: [],
+  };
+}
 
-state -> o Estado atualizado pelo método 'myServerAction'
-action -> a 'server-action' fornecida pelo hook que deve ser usada na 'prop' 'action' do 'form'
-isPending -> variável 'boolean' que alterna dependendo do status da 'server-action' (se terminou ou não)
+Nota-se que, no retorno da 'server-action', é sobrescrita a propriedade 'title'
+do Estado recebido, pelo valor também recebido do 'form'.
 
-Na 'server-action', é possível receber o Estado inicial e as futuras atualizações do Estado no 'arg0'
-da função. Assim, é possível tratar esse Estado e retorná-lo. Assim como o 'reducer', esse comportamento
-é cíclico, pois o Estado recebido pela 'server-action' é o 'Estado anterior' na verdade, pelo fato deste
-ser atualizado pela 'server-action'. Daí, ela retorna um 'Novo Estado'.
-
-No lado do cliente, é possível utilizá-lo pelo primeiro item do array retornado pelo hook 'useActionState'.
-
-Dica para observar (e garantir) que uma variável pelo lado do cliente:
-
-useEffect(() => {
-  console.log(state);
-}, [state]);
-
-Isso mesmo! Simplesmente usando um 'useEffect' e passando a variável no array de dependências.
+Nessa aula, o objeto foi MANTER O ESTADO do objeto no formulário com base nos valores
+passados para os campos. Depois é que, de fato, a 'server-action' vai interagir com a
+base de dados, a fim deles serem persistidos.
