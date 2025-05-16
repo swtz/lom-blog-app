@@ -2,4 +2,36 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 189. Preenchendo dados do formulário com DTOs (Data Transfer Object)
+Aula: 190. Entenda o hook useActionState para Server Actions, Formulários e Estado (state)
+
+O hook useActionState permite trabalhar com 'server-actions' com a funcionalidade de
+manter o Estado entre as requisições que são feitas pelo lado do cliente (com o uso desse hook)
+e o recebimento delas pelo 'server-action'.
+
+O coach-Luiz afirmou que é como se fosse um 'reducer', porém sendo desenvolvido pensando
+em requisições 'http'.
+
+O objeto que a 'server-action' retorna, vira o Estado atual entregue pelo hook 'useActionState'.
+
+Sintaxe:
+
+const [state, action, isPending] = useActionState(myServerAction, initialState);
+
+state -> o Estado atualizado pelo método 'myServerAction'
+action -> a 'server-action' fornecida pelo hook que deve ser usada na 'prop' 'action' do 'form'
+isPending -> variável 'boolean' que alterna dependendo do status da 'server-action' (se terminou ou não)
+
+Na 'server-action', é possível receber o Estado inicial e as futuras atualizações do Estado no 'arg0'
+da função. Assim, é possível tratar esse Estado e retorná-lo. Assim como o 'reducer', esse comportamento
+é cíclico, pois o Estado recebido pela 'server-action' é o 'Estado anterior' na verdade, pelo fato deste
+ser atualizado pela 'server-action'. Daí, ela retorna um 'Novo Estado'.
+
+No lado do cliente, é possível utilizá-lo pelo primeiro item do array retornado pelo hook 'useActionState'.
+
+Dica para observar (e garantir) que uma variável pelo lado do cliente:
+
+useEffect(() => {
+  console.log(state);
+}, [state]);
+
+Isso mesmo! Simplesmente usando um 'useEffect' e passando a variável no array de dependências.
