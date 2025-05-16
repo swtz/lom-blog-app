@@ -2,18 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 188. Adicionando os campos para Post no formulário ManagePostForm
-
-Ao montar o formulário, é necessário alguns campos do 'model' criado para o 'post'.
-Dessa forma, alguns campos desse 'model' — que é um objeto — precisam coincidir com
-os campos do formulário. Também, alguns campos oriundos desse mesmo model, vão ser usados
-na Home Page do blog e também nas páginas de um 'post' em específico.
-
-O ponto é: quando existe a necessidade de se transferir um objeto cujo alguns campos
-são diferentes em alguns locais da aplicação, porém vêm da mesmo fonte (no caso o objeto)
-é o palco para um Design Pattern chamado DTO — Data Transfer Object.
-
-É um padrão que garante que o objeto recebido seguirá um modelo derivado do dado que vem
-da base de dados. Isso contribui para a segurança da informação, pois se evita a transferência
-de dados sensíveis que podem vir da base de dados, ou seja, esse Design Pattern garante
-que algum componente recebe somente os dados que precisa; nada mais além disso.
+Aula: 189. Preenchendo dados do formulário com DTOs (Data Transfer Object)
