@@ -1,6 +1,7 @@
 'use client';
 
-import { useActionState, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { makePartialPublicPost, PublicPost } from '@/dto/post/dto';
 import { createPostAction } from '@/actions/post/create-post-action';
@@ -25,6 +26,13 @@ export function ManagePostForm({ publicPost }: ManagePostFormProps) {
     createPostAction,
     initialState,
   );
+
+  useEffect(() => {
+    if (state.errors.length > 0) {
+      toast.dismiss();
+      state.errors.forEach(error => toast.error(error));
+    }
+  }, [state.errors]);
 
   const { formState } = state;
   const [contentValue, setContentValue] = useState(formState.content);
@@ -90,7 +98,6 @@ export function ManagePostForm({ publicPost }: ManagePostFormProps) {
           placeholder='Digite a descrição'
           type='text'
           defaultValue={formState.coverImageUrl}
-          readOnly
         />
 
         <InputCheckbox
