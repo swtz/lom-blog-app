@@ -2,4 +2,6 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 194. Validando o FormData e exibindo erros no front-end com Toastify
+Aula: 195. Criando a slug e o ID do post com slugify e uuid v4
+
+npm i uuid slugify
