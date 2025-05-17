@@ -2,35 +2,31 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 191. Mantenha o estado do form com useActionState e FormData
+Aula: 192. Convertendo FormData em Object do JavaScript para validação posterior
 
-O 'arg1' da 'server-action' usada no primeiro parâmetro do hook 'useActionState' são
-os dados que vem do formulário. É um objeto do tipo 'FormData' que carrega TODOS os
-campos do 'form'. As chaves desse objeto são os nomes que os campos possuem (atributo
-'name' do elemento JSX).
+Instrução para converter um objeto diferenciado para um objeto JavaScript convencional:
+const rawObject = Object.fromEntries(anotherObject.entries());
 
-Exemplo de como fica a 'server-action':
+Abaixo, é uma cópia de como fica o objeto 'FormData' convertido para 'Object' do JavaScript.
+Ele será útil para validar os dados que foram enviados pelo formulário.
 
-type CreateActionState = {
-  formState: PublicPost;
-  errors: string[];
-};
-
-export async function createPostAction(
-  prevState: CreateActionState,
-  formData: FormData,
-): Promise<CreateActionState> {
-  const title = formData.get('title')?.toString() || '';
-
-  return {
-    formState: { ...prevState.formState, title },
-    errors: [],
-  };
+{
+  '$ACTION_REF_1': '',
+  '$ACTION_1:0': '{"id":"60dbc3205662316e2e5ef518ce4e2e58b0073b17c3","bound":"$@1"}',
+  '$ACTION_1:1': '[{"formState":{"id":"99f8add4-7684-4c16-a316-616271db199e","slug":"rotina-matinal-de-pessoas-altamente-eficazes","author":"Isabela Nunes","title":"Rotina matinal de pessoas altamente eficazes","excerpt":"O Next.js também é uma boa escolha para quem quer se preocupar com performance e SEO.","content":"O Next.js também é uma boa escolha para quem quer se preocupar com performance e SEO.","coverImageUrl":"/images/bryen_8.png","createdAt":"2025-04-08T00:24:38.616Z","published":true},"errors":[]}]',
+  '$ACTION_KEY': 'k1488883480',
+  ID: '99f8add4-7684-4c16-a316-616271db199e',
+  slug: 'rotina-matinal-de-pessoas-altamente-eficazes',
+  author: 'Isabela Nunes',
+  title: 'Rotina matinal de pessoas altamente eficazes',
+  excerpt: 'O Next.js também é uma boa escolha para quem quer se preocupar com performance e SEO.',
+  content: 'O Next.js também é uma boa escolha para quem quer se preocupar com performance e SEO.',
+  file: File {
+    size: 0,
+    type: 'application/octet-stream',
+    name: 'undefined',
+    lastModified: 1747495144107
+  },
+  coverImageUrl: '/images/bryen_8.png',
+  published: 'on'
 }
-
-Nota-se que, no retorno da 'server-action', é sobrescrita a propriedade 'title'
-do Estado recebido, pelo valor também recebido do 'form'.
-
-Nessa aula, o objeto foi MANTER O ESTADO do objeto no formulário com base nos valores
-passados para os campos. Depois é que, de fato, a 'server-action' vai interagir com a
-base de dados, a fim deles serem persistidos.
