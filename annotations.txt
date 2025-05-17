@@ -2,6 +2,32 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 195. Criando a slug e o ID do post com slugify e uuid v4
+Aula: 196. Salvando o novo post na base de dados e configurando images.remotePatterns
 
-npm i uuid slugify
+Como agora, finalmente, vai ser salvo o 'post' na base de dados, após ser instruído
+o método responsável por essa transação, o desenvolvedor Next não pode se esquecer
+de REVALIDAR o 'cache' dos 'posts', a fim de que o método que busca todos os 'posts' na
+base de dados tenha seu 'cache' INVALIDADO. Assim, ao acessar a Home Page do site,
+o novo 'post' aparecerá.
+
+Lembrando que nesse projeto está sendo usado o método 'revalidateTag', ou seja, o 'cache'
+é revalidado manualmente.
+
+Após usar esse método, o novo 'post' é incluído na "nova versão" do 'cache'.
+
+Caso o usuário passe uma 'url' inteira como caminho de uma imagem, O Next vai exigir a liberação
+desse domínio no arquivo de configurações que fica na raiz do projeto (exemplo):
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/**',
+        search: '',
+      },
+    ],
+  },
+};

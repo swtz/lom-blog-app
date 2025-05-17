@@ -6,6 +6,10 @@ import { PostCreateSchema } from '@/lib/post/validations';
 import { PostModel } from '@/models/post/post-model';
 import { getZodErrorMessages } from '@/utils/get-zod-error-messages';
 import { makeSlugFromText } from '@/utils/make-slug-from-text';
+import { drizzleDb } from '@/db/drizzle';
+import { postsTable } from '@/db/drizzle/schemas';
+import { revalidateTag } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 type CreateActionState = {
   formState: PublicPost;
@@ -45,8 +49,9 @@ export async function createPostAction(
     slug: makeSlugFromText(validPostData.title),
   };
 
-  return {
-    formState: newPost,
-    errors: [],
-  };
+  // TODO: mover este método para o repositório
+  await drizzleDb.insert(postsTable).values(newPost);
+
+  revalidateTag('posts');
+  redirect(`/admin/post/${newPost.id}`);
 }
