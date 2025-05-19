@@ -2,4 +2,8 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 197. Criando métodos create, delete e update no repositório
+Aula: 198. Ajustes finais no formulário + server action updatePostAction
+
+Nessa aula o coach-Luiz ensinou uma maneira de usar tipos condicionais no TypeScript.
+Esses tipos permitem que o componente ManagePostForm se comporte de um modo mais flexível.
+É interessante analisar o arquivo desse componente e o seu uso nas rotas 'admin'.
