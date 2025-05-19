@@ -1,17 +1,18 @@
 'use client';
 
 import { useActionState, useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import { makePartialPublicPost, PublicPost } from '@/dto/post/dto';
 import { createPostAction } from '@/actions/post/create-post-action';
+import { updatePostAction } from '@/actions/post/update-post-action';
 
 import { Button } from '@/components/Button';
 import { InputCheckbox } from '@/components/InputCheckbox';
 import { InputText } from '@/components/InputText';
 import { MarkdownEditor } from '@/components/MarkdownEditor';
 import { ImageUploader } from '../ImageUploader';
-import { updatePostAction } from '@/actions/post/update-post-action';
 
 type ManagePostFormUpdateProps = {
   mode: 'update';
@@ -26,6 +27,9 @@ type ManagePostFormProps =
 
 export function ManagePostForm(props: ManagePostFormProps) {
   const { mode } = props;
+  const searchParams = useSearchParams();
+  const created = searchParams.get('created');
+  const router = useRouter();
 
   let publicPost;
   if (mode === 'update') {
@@ -60,6 +64,16 @@ export function ManagePostForm(props: ManagePostFormProps) {
       toast.success('Post atualizado com sucesso!');
     }
   }, [state.success]);
+
+  useEffect(() => {
+    if (created === '1') {
+      toast.dismiss();
+      toast.success('Post criado com sucesso!');
+      const url = new URL(window.location.href);
+      url.searchParams.delete('created');
+      router.replace(url.toString());
+    }
+  }, [created, router]);
 
   const { formState } = state;
   const [contentValue, setContentValue] = useState(formState.content);

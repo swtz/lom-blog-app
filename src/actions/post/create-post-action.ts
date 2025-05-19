@@ -9,11 +9,12 @@ import { makeSlugFromText } from '@/utils/make-slug-from-text';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { postRepository } from '@/repositories/post';
+import { asyncDelay } from '@/utils/async-delay';
 
 type CreateActionState = {
   formState: PublicPost;
   errors: string[];
-  success?: true;
+  success?: string;
 };
 
 export async function createPostAction(
@@ -21,6 +22,8 @@ export async function createPostAction(
   formData: FormData,
 ): Promise<CreateActionState> {
   // TODO: verificar se usuário está logado
+
+  await asyncDelay(3000);
 
   if (!(formData instanceof FormData)) {
     return {
@@ -66,5 +69,5 @@ export async function createPostAction(
   }
 
   revalidateTag('posts');
-  redirect(`/admin/post/${newPost.id}`);
+  redirect(`/admin/post/${newPost.id}?created=1`);
 }

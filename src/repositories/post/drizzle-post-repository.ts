@@ -104,6 +104,11 @@ export class DrizzlePostRepository implements PostRepository {
       updatedAt,
     };
 
+    await drizzleDb
+      .update(postsTable)
+      .set(newPost)
+      .where(eq(postsTable.id, id));
+
     return {
       ...oldPost,
       ...newPost,

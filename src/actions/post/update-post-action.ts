@@ -9,11 +9,13 @@ import {
 } from '@/dto/post/dto';
 import { PostUpdateSchema } from '@/lib/post/validations';
 import { getZodErrorMessages } from '@/utils/get-zod-error-messages';
+import { asyncDelay } from '@/utils/async-delay';
+import { makeRandomString } from '@/utils/make-random-string';
 
 type UpdateActionState = {
   formState: PublicPost;
   errors: string[];
-  success?: true;
+  success?: string;
 };
 
 export async function updatePostAction(
@@ -22,6 +24,8 @@ export async function updatePostAction(
 ): Promise<UpdateActionState> {
   // TODO: verificar se usuário está logado
 
+  await asyncDelay(3000);
+
   if (!(formData instanceof FormData)) {
     return {
       formState: prevState.formState,
@@ -29,7 +33,7 @@ export async function updatePostAction(
     };
   }
 
-  const id = formData.get('id')?.toString() || '';
+  const id = formData.get('ID')?.toString() || '';
 
   if (!id || typeof id !== 'string') {
     return {
@@ -77,6 +81,6 @@ export async function updatePostAction(
   return {
     formState: makePublicPostFromDb(post),
     errors: [],
-    success: true,
+    success: makeRandomString(),
   };
 }
