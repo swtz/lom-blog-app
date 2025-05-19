@@ -7,7 +7,6 @@ import {
   IMAGE_UPLOAD_DIRECTORY,
   IMAGE_UPLOADER_MAX_SIZE,
 } from '@/lib/constants';
-import { asyncDelay } from '@/utils/async-delay';
 
 type UploadImageActionResult = {
   url: string;
@@ -17,10 +16,9 @@ type UploadImageActionResult = {
 export async function uploadImageAction(
   formData: FormData,
 ): Promise<UploadImageActionResult> {
-  const makeResult = ({ url = '', error = '' }) => ({ url, error });
   // TODO: checar se usuário está logado
 
-  await asyncDelay(3000);
+  const makeResult = ({ url = '', error = '' }) => ({ url, error });
 
   if (!(formData instanceof FormData)) {
     return makeResult({ error: 'Dados inválidos.' });

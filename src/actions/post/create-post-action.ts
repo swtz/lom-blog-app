@@ -9,7 +9,6 @@ import { makeSlugFromText } from '@/utils/make-slug-from-text';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { postRepository } from '@/repositories/post';
-import { asyncDelay } from '@/utils/async-delay';
 
 type CreateActionState = {
   formState: PublicPost;
@@ -22,8 +21,6 @@ export async function createPostAction(
   formData: FormData,
 ): Promise<CreateActionState> {
   // TODO: verificar se usuário está logado
-
-  await asyncDelay(3000);
 
   if (!(formData instanceof FormData)) {
     return {
