@@ -2,12 +2,20 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 200. Revisão, limpeza e pequenas correções no código
+Aula: 201. Entendendo variáveis de ambiente e o .env.local
 
-O coach-Luiz criou os métodos 'create', 'update' e 'delete' para o repositório JSON.
+Esse arquivo contém variáveis específicas do ambiente que o código está rodando.
+Evitam que essas variáveis sejam compartilhadas, a fim de causarem impacto em locais
+indesejados.
 
-Ele recomendou sempre fazer a build do projeto, devido ao Next funcionar de maneira diferente
-em modo 'dev'.
+O arquivo das variáveis de ambiente não usa JavaScript.
 
-Um 'catch' vazio — catch() — gera uma exceção. Para resolver é possível passar uma função
-vazia o que indica que o erro já está sendo tratado: .catch(() => undefined);
+Esse arquivo não é compartilhado pelo repositório (o git não monitora o arquivo, logo este não vai
+para o repositório público).
+
+Para todo componente 'server-side', a instrução: `process.env.MY_ENV_VAR` funcionará perfeitamente.
+
+Caso se deseje obter o valor dessa variável de ambiente em um componente 'client-side', ou seja,
+caso esse valor precise estar NA BUILD FINAL DO PROJETO, no arquivo '.env.local', as variáveis
+devem ser prefixadas com 'NEXT_PUBLIC_', assim, tanto do lado do cliente quanto no lado do servidor,
+será possível ter acesso ao valor dessa variável. Por isso é preciso ter muito cuidado ao usar esse prefixo.
