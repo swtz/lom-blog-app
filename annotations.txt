@@ -2,6 +2,37 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 205. Se o usuário e senha são válidos, vamos gerar o cookie e o JWT
+Aula: 206. Trabalhando com cookies seguros no Next.js
 
-Para gerar o cookie é preciso do JWT token e vice-versa. Um depende do outro.
+Referência:
+https://nextjs.org/docs/app/api-reference/functions/cookies
+
+Para usar o método 'set()' do objeto 'cookie' do next, é preciso estar dentro
+de uma 'server-action' ou usar um Router Handler. Toda operação de read/write
+requer essa condição.
+
+Quem manda o browser criar e apagar o cookie é o servidor.
+
+Exemplo de uso:
+
+const cookieStore = await cookies();
+
+cookieStore.set(loginCookieName, loginSession, {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'strict',
+  expires: expiresAt,
+});
+
+Como é possível notar, o terceiro parâmetro do método 'set()' recebe um objeto com
+algumas configurações. A propriedade 'httpOnly' torna a leitura do cookie possível
+somente pelo servidor. Assim a aplicação pelo lado do cliente (por exemplo, o navegador)
+não consegue ter acesso a esses cookies. Isso torna ele um tanto seguro.
+
+Alguns termos relacionados às requisições e aos cookies criados:
+
+Same-Origin: quando há comunicação entre aplicações de um mesmo domínio
+Cross-Origin: quando há comunicação entre aplicações de domínios diferentes
+
+Lembrando: só é possível LER cookies em Server Components e ESCREVER somente em 'server-actions'
+e Route Handlers.
