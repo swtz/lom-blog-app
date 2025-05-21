@@ -2,6 +2,9 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 205. Se o usuário e senha são válidos, vamos gerar o cookie e o JWT
+Aula: 207. Entendendo e assinando um JWT com a biblioteca jose
 
-Para gerar o cookie é preciso do JWT token e vice-versa. Um depende do outro.
+npm i jose
+
+É por meio da verificação da assinatura do JWT que é possível saber se o servidor da aplicação
+assinou o token ou não. Isso torna o JWT um meio fundamental de autenticidade.
