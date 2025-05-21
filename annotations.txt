@@ -2,4 +2,19 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 203. Componente LoginForm + server actions loginAction e logoutAction
+Aula: 204. Gerando e comparando hash de senha com Bcrypt para segurança
+
+A senha que o usuário enviar pelo formulário será criptografada usando o 'lib' 'bcrypt'.
+
+npm i bcrypt (unix)
+npm i bcryptjs (windows)
+
+Após os dados da senha serem criptografados gerando assim um 'hash' de senha, esse será usado
+para comparação futura.
+
+Esse hash precisou se 'empacotado' no formato 'base64', por conta de possíveis caracteres especiais
+que a função de 'hash' da 'lib' 'bcrypt' gera. Assim, nesse formato, é garantido que nenhum caractere
+especial impeça a leitura da variável de ambiente que contém o 'hash' da senha do usuário.
+
+No método criado para interpretar esse 'hash' (a fim de verificar se esse é verdadeiro) é preciso
+primeiro 'desempacotar' o 'hash' em 'base64' e depois usar o método de comparação de 'lib' 'bcrypt'.
