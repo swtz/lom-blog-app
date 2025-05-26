@@ -2,4 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 208. Adicionando checagem de autenticação nas server actions
+Aula: 209. Checagem de autenticação em page.tsx e layout.tsx (server components)
