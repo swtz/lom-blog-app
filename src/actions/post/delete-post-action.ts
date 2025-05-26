@@ -3,9 +3,16 @@
 import { revalidateTag } from 'next/cache';
 import { postRepository } from '@/repositories/post';
 import { PostModel } from '@/models/post/post-model';
+import { verifyLoginSession } from '@/lib/login/manage-login';
 
 export async function deletePostAction(id: string) {
-  // TODO: checar login do usuário
+  const isAuthenticated = await verifyLoginSession();
+
+  if (!isAuthenticated) {
+    return {
+      error: 'Faça login novamente.',
+    };
+  }
 
   if (!id || typeof id !== 'string') {
     return {

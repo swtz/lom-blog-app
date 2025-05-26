@@ -11,6 +11,7 @@ import { PostUpdateSchema } from '@/lib/post/validations';
 import { getZodErrorMessages } from '@/utils/get-zod-error-messages';
 import { asyncDelay } from '@/utils/async-delay';
 import { makeRandomString } from '@/utils/make-random-string';
+import { verifyLoginSession } from '@/lib/login/manage-login';
 
 type UpdateActionState = {
   formState: PublicPost;
@@ -22,7 +23,7 @@ export async function updatePostAction(
   prevState: UpdateActionState,
   formData: FormData,
 ): Promise<UpdateActionState> {
-  // TODO: verificar se usuário está logado
+  const isAuthenticated = await verifyLoginSession();
 
   await asyncDelay(3000);
 
@@ -44,6 +45,15 @@ export async function updatePostAction(
 
   const formDataToObject = Object.fromEntries(formData.entries());
   const zodParsedObject = PostUpdateSchema.safeParse(formDataToObject);
+
+  if (!isAuthenticated) {
+    formDataToObject.id = id;
+
+    return {
+      formState: makePartialPublicPost(formDataToObject),
+      errors: ['Faça login em outra aba antes de salvar.'],
+    };
+  }
 
   if (!zodParsedObject.success) {
     const errors = getZodErrorMessages(zodParsedObject.error.format());

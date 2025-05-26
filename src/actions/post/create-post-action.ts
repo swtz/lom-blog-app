@@ -9,6 +9,7 @@ import { makeSlugFromText } from '@/utils/make-slug-from-text';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { postRepository } from '@/repositories/post';
+import { verifyLoginSession } from '@/lib/login/manage-login';
 
 type CreateActionState = {
   formState: PublicPost;
@@ -20,7 +21,7 @@ export async function createPostAction(
   prevState: CreateActionState,
   formData: FormData,
 ): Promise<CreateActionState> {
-  // TODO: verificar se usuário está logado
+  const isAuthenticated = await verifyLoginSession();
 
   if (!(formData instanceof FormData)) {
     return {
@@ -31,6 +32,13 @@ export async function createPostAction(
 
   const formDataToObject = Object.fromEntries(formData.entries());
   const zodParsedObject = PostCreateSchema.safeParse(formDataToObject);
+
+  if (!isAuthenticated) {
+    return {
+      formState: makePartialPublicPost(formDataToObject),
+      errors: ['Faça login em outra aba antes de salvar.'],
+    };
+  }
 
   if (!zodParsedObject.success) {
     const errors = getZodErrorMessages(zodParsedObject.error.format());

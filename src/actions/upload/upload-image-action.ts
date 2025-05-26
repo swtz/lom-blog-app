@@ -1,5 +1,6 @@
 'use server';
 
+import { verifyLoginSession } from '@/lib/login/manage-login';
 import { mkdir, writeFile } from 'fs/promises';
 import { extname } from 'path';
 
@@ -19,9 +20,13 @@ const imageServerUrl =
 export async function uploadImageAction(
   formData: FormData,
 ): Promise<UploadImageActionResult> {
-  // TODO: checar se usuário está logado
-
   const makeResult = ({ url = '', error = '' }) => ({ url, error });
+
+  const isAuthenticated = await verifyLoginSession();
+
+  if (!isAuthenticated) {
+    return makeResult({ error: 'Faça login novamente para enviar a imagem.' });
+  }
 
   if (!(formData instanceof FormData)) {
     return makeResult({ error: 'Dados inválidos.' });
