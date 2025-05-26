@@ -1,6 +1,9 @@
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
+<<<<<<< HEAD
 import { SignJWT, jwtVerify } from 'jose';
+=======
+>>>>>>> f774e8929af806345c663055f525b490a5809308
 
 const jwtSecretKey = process.env.JWT_SECRET_KEY;
 const jwtEncodedKey = new TextEncoder().encode(jwtSecretKey);
@@ -8,11 +11,14 @@ const jwtEncodedKey = new TextEncoder().encode(jwtSecretKey);
 const loginExpSeconds = Number(process.env.LOGIN_EXPIRATION_SECONDS) || 86400;
 const loginExpStr = process.env.LOGIN_EXPIRATION_STRING || '1d';
 const loginCookieName = process.env.LOGIN_COOKIE_NAME || 'loginSession';
+<<<<<<< HEAD
 
 type JwtPayload = {
   username: string;
   expiresAt: Date;
 };
+=======
+>>>>>>> f774e8929af806345c663055f525b490a5809308
 
 export async function hashPassword(password: string) {
   const hash = await bcrypt.hash(password, 10);
@@ -28,7 +34,11 @@ export async function verifyPassword(password: string, base64Hash: string) {
 
 export async function createLoginSession(username: string) {
   const expiresAt = new Date(Date.now() + loginExpSeconds * 1000);
+<<<<<<< HEAD
   const loginSession = await signJwt({ username, expiresAt });
+=======
+  const loginSession = username + 'something'; // JWT
+>>>>>>> f774e8929af806345c663055f525b490a5809308
   const cookieStore = await cookies();
 
   cookieStore.set(loginCookieName, loginSession, {
@@ -44,6 +54,7 @@ export async function deleteLoginSession() {
   cookieStore.set(loginCookieName, '', { expires: new Date(0) });
   cookieStore.delete(loginCookieName);
 }
+<<<<<<< HEAD
 
 export async function signJwt(jwtPayload: JwtPayload) {
   return new SignJWT(jwtPayload)
@@ -52,3 +63,5 @@ export async function signJwt(jwtPayload: JwtPayload) {
     .setExpirationTime(loginExpStr)
     .sign(jwtEncodedKey);
 }
+=======
+>>>>>>> f774e8929af806345c663055f525b490a5809308
