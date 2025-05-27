@@ -2,25 +2,4 @@ Curso de React JS 19 e Next.js 15 (atualizado para 2025)
 
 Seção 3: Next.js 15, React 19 e Tailwind CSS v4: Introdução ao Desenvolvimento Moderno
 
-Aula: 211. Trabalhando com middleware no Next.js
-
-Referência:
-https://nextjs.org/docs/app/building-your-application/routing/middleware
-
-O arquivo 'middleware.ts' é criado no mesmo nível da pasta 'app' do Next.
-Só de criar esse arquivo, o Next já o compila e espera que ele retorne ou
-responda às requisições feitas ao navegar pela aplicação. Por isso, é
-bem importante ler a documentação, pois é preciso configurar esse arquivo
-corretamente, caso contrário ele interceptará QUALQUER requisição feita
-pelo usuário o que inclui até mesmo as imagens do site.
-
-Exemplo de configuração:
-
-export const config = {
-  matcher: 'admin/:path*',
-};
-
-Assim o 'middleware' pega todas a rotas após 'admin' inclusive as sub-rotas.
-
-Prestar atenção na lógica desenvolvida no código do 'middleware', pois conta com
-métodos e propriedades oriundos do objeto 'request'.
+Aula: 212. Ajustes finais + como subir o site do zero
